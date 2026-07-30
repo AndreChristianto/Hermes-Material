@@ -227,28 +227,59 @@ strong { font-weight: 500; color: var(--text); }
   align-items: center;
   gap: 0.35rem;
   width: 100%;
-  padding-inline: 30px;
+  padding-inline: 26px;
   overflow-x: auto;
   scrollbar-width: none;
-  scroll-padding-inline: 34px;
+  scroll-padding-inline: 30px;
 }
 
 .nav-links::-webkit-scrollbar { display: none; }
 
-.nav-scroll-arrow {
+/* Soft edge fade, purely a visual hint, separate from the button */
+.nav-links-wrap::before,
+.nav-links-wrap::after {
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 34px;
+  width: 22px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.nav-links-wrap::before { left: 0; background: linear-gradient(to right, var(--nav-bg), transparent); }
+.nav-links-wrap::after { right: 0; background: linear-gradient(to left, var(--nav-bg), transparent); }
+.nav-links-wrap.show-left::before { opacity: 1; }
+.nav-links-wrap.show-right::after { opacity: 1; }
+
+/* The actual button, small and circular, centered vertically */
+.nav-scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border: none;
   background: none;
+  padding: 0;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s;
+}
+
+.nav-scroll-arrow--left { left: 2px; }
+.nav-scroll-arrow--right { right: 2px; }
+
+.nav-scroll-arrow.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .nav-scroll-arrow-icon {
@@ -264,23 +295,6 @@ strong { font-weight: 500; color: var(--text); }
   font-size: 13px;
   line-height: 1;
   box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-}
-
-.nav-scroll-arrow--left {
-  left: 0;
-  justify-content: flex-start;
-  background: linear-gradient(to right, var(--nav-bg) 45%, transparent);
-}
-
-.nav-scroll-arrow--right {
-  right: 0;
-  justify-content: flex-end;
-  background: linear-gradient(to left, var(--nav-bg) 45%, transparent);
-}
-
-.nav-scroll-arrow.visible {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 .nav-link {

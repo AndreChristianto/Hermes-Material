@@ -341,12 +341,17 @@
 
   function checkNavScroll(){
     const el = document.getElementById('navLinks');
+    const wrap = document.querySelector('.nav-links-wrap');
     const left = document.querySelector('.nav-scroll-arrow--left');
     const right = document.querySelector('.nav-scroll-arrow--right');
-    if(!el || !left || !right) return;
+    if(!el || !wrap || !left || !right) return;
     const maxScroll = el.scrollWidth - el.clientWidth;
-    left.classList.toggle('visible', el.scrollLeft > 4);
-    right.classList.toggle('visible', maxScroll > 4 && el.scrollLeft < maxScroll - 4);
+    const showLeft = el.scrollLeft > 4;
+    const showRight = maxScroll > 4 && el.scrollLeft < maxScroll - 4;
+    left.classList.toggle('visible', showLeft);
+    right.classList.toggle('visible', showRight);
+    wrap.classList.toggle('show-left', showLeft);
+    wrap.classList.toggle('show-right', showRight);
   }
 
   function scrollNav(dir){
