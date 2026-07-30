@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
@@ -21,16 +21,21 @@
       <div class="nav-brand-icon">H</div>
       <span class="nav-brand-text">Hermes x Sectors</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links-wrap">
+      <button class="nav-scroll-arrow nav-scroll-arrow--left" onclick="scrollNav(-1)" aria-label="Scroll left" tabindex="-1"><span class="nav-scroll-arrow-icon">‹</span></button>
+      <div class="nav-links" id="navLinks">
       <a href="/" class="nav-link">Home</a>
       <a href="/module-1" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
       <a href="/module-2" class="nav-link active"><span class="nav-num">02</span>Architecture</a>
       <a href="/module-3" class="nav-link"><span class="nav-num">03</span>Setup</a>
       <a href="/module-4" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
       <a href="/module-5" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
-      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Knowledge Wiki</a>
       <a href="/module-7" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
-      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Automation</a>
+      <a href="/module-9" class="nav-link"><span class="nav-num">09</span>Level Up</a>
+    </div>
+      <button class="nav-scroll-arrow nav-scroll-arrow--right" onclick="scrollNav(1)" aria-label="Scroll right" tabindex="-1"><span class="nav-scroll-arrow-icon">›</span></button>
     </div>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
       <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -111,12 +116,12 @@
             <text x="395" y="38" text-anchor="middle" fill="var(--text)" font-weight="600">Background Review Runs</text>
             <line x1="295" y1="50" x2="495" y2="50" stroke="var(--border)" stroke-width="1"></line>
             <text x="395" y="68" text-anchor="middle" fill="var(--text3)" font-size="10">Fires if ANY one is true:</text>
-            <text x="300" y="86" fill="var(--text2)" font-size="10">•  5+ tool calls succeeded</text>
-            <text x="300" y="102" fill="var(--text2)" font-size="10">•  it worked through an error</text>
-            <text x="300" y="118" fill="var(--text2)" font-size="10">•  you corrected it</text>
-            <text x="300" y="134" fill="var(--text2)" font-size="10">•  it was a non-trivial workflow</text>
+            <text x="300" y="86" fill="var(--text2)" font-size="10">â¢  5+ tool calls succeeded</text>
+            <text x="300" y="102" fill="var(--text2)" font-size="10">â¢  it worked through an error</text>
+            <text x="300" y="118" fill="var(--text2)" font-size="10">â¢  you corrected it</text>
+            <text x="300" y="134" fill="var(--text2)" font-size="10">â¢  it was a non-trivial workflow</text>
             <line x1="300" y1="148" x2="490" y2="148" stroke="var(--border)" stroke-width="1"></line>
-            <text x="395" y="167" text-anchor="middle" fill="var(--text3)" font-size="10">None true → no change made</text>
+            <text x="395" y="167" text-anchor="middle" fill="var(--text3)" font-size="10">None true â no change made</text>
 
             <line x1="510" y1="100" x2="548" y2="100" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
 
@@ -155,7 +160,7 @@
       </div>
 
       <div class="info-box" style="margin-top:1.5rem;">
-        <span class="info-box-icon">★</span>
+        <span class="info-box-icon">â</span>
         <span>Rule of thumb: if you'd put it on a sticky note, it's memory. If you'd put it in a reference document, it's a skill.</span>
       </div>
     </div>
@@ -217,11 +222,11 @@
         Hermes asks for your approval before any shell command or file operation, by default, not as an option. You see exactly what it's about to do before it happens.
       </p>
       <div class="info-box">
-        <span class="info-box-icon">✓</span>
+        <span class="info-box-icon">â</span>
         <span>Even a malicious MCP tool trying to run a destructive command hits this prompt first. Command approval makes certain attacks structurally harder.</span>
       </div>
       <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-top:1.25rem;">
-        The trade-off is friction. For scheduled tasks, mark specific commands as trusted to skip the prompt, anything new or risky still stops and asks. More in Module 07.
+        The trade-off is friction. For scheduled tasks, mark specific commands as trusted to skip the prompt, anything new or risky still stops and asks. More in Module 08.
       </p>
 
       <details class="detail-aside">
@@ -284,11 +289,11 @@
   <div class="container">
     <nav class="page-nav">
       <a href="/module-1" class="page-nav-link">
-        <span class="page-nav-label">← Previous</span>
+        <span class="page-nav-label">â Previous</span>
         <span class="page-nav-title">Module 01: What is Hermes?</span>
       </a>
       <a href="/module-3" class="page-nav-link page-nav-link--next">
-        <span class="page-nav-label">Next →</span>
+        <span class="page-nav-label">Next â</span>
         <span class="page-nav-title">Module 03: Setup &amp; Installation</span>
       </a>
     </nav>
@@ -322,8 +327,27 @@
     if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
   }
 
+  function checkNavScroll(){
+    const el = document.getElementById('navLinks');
+    const left = document.querySelector('.nav-scroll-arrow--left');
+    const right = document.querySelector('.nav-scroll-arrow--right');
+    if(!el || !left || !right) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    left.classList.toggle('visible', el.scrollLeft > 4);
+    right.classList.toggle('visible', maxScroll > 4 && el.scrollLeft < maxScroll - 4);
+  }
+
+  function scrollNav(dir){
+    const el = document.getElementById('navLinks');
+    if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
   window.addEventListener('DOMContentLoaded', function(){
     syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    checkNavScroll();
+    const navLinks = document.getElementById('navLinks');
+    if(navLinks) navLinks.addEventListener('scroll', checkNavScroll);
+    window.addEventListener('resize', checkNavScroll);
   });
 </script>
 </body>

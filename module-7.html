@@ -21,16 +21,21 @@
       <div class="nav-brand-icon">H</div>
       <span class="nav-brand-text">Hermes x Sectors</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links-wrap">
+      <button class="nav-scroll-arrow nav-scroll-arrow--left" onclick="scrollNav(-1)" aria-label="Scroll left" tabindex="-1"><span class="nav-scroll-arrow-icon">‹</span></button>
+      <div class="nav-links" id="navLinks">
       <a href="/" class="nav-link">Home</a>
       <a href="/module-1" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
       <a href="/module-2" class="nav-link"><span class="nav-num">02</span>Architecture</a>
       <a href="/module-3" class="nav-link"><span class="nav-num">03</span>Setup</a>
       <a href="/module-4" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
       <a href="/module-5" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
-      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Knowledge Wiki</a>
       <a href="/module-7" class="nav-link active"><span class="nav-num">07</span>Multi-Agent</a>
-      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Automation</a>
+      <a href="/module-9" class="nav-link"><span class="nav-num">09</span>Level Up</a>
+    </div>
+      <button class="nav-scroll-arrow nav-scroll-arrow--right" onclick="scrollNav(1)" aria-label="Scroll right" tabindex="-1"><span class="nav-scroll-arrow-icon">›</span></button>
     </div>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
       <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -182,7 +187,7 @@
       </div>
 
       <div class="info-box">
-        <span class="info-box-icon">→</span>
+        <span class="info-box-icon">â</span>
         <span>Routing quality in Auto mode depends on each profile having a description of what it's good at. Fill these in, or use <code>hermes profile describe &lt;name&gt; --auto</code> to generate one from its SOUL.md, rather than leaving them blank.</span>
       </div>
 
@@ -350,12 +355,12 @@ hermes kanban log &lt;task_id&gt;     # raw worker log, full error traces</pre>
   <div class="container">
     <nav class="page-nav">
       <a href="/module-6" class="page-nav-link">
-        <span class="page-nav-label">← Previous</span>
-        <span class="page-nav-title">Module 06: Automation &amp; Cron</span>
+        <span class="page-nav-label">â Previous</span>
+        <span class="page-nav-title">Module 06: Building a Knowledge Wiki</span>
       </a>
       <a href="/module-8" class="page-nav-link page-nav-link--next">
-        <span class="page-nav-label">Next →</span>
-        <span class="page-nav-title">Module 08: Level Up</span>
+        <span class="page-nav-label">Next â</span>
+        <span class="page-nav-title">Module 08: Automation &amp; Cron</span>
       </a>
     </nav>
   </div>
@@ -388,8 +393,27 @@ hermes kanban log &lt;task_id&gt;     # raw worker log, full error traces</pre>
     if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
   }
 
+  function checkNavScroll(){
+    const el = document.getElementById('navLinks');
+    const left = document.querySelector('.nav-scroll-arrow--left');
+    const right = document.querySelector('.nav-scroll-arrow--right');
+    if(!el || !left || !right) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    left.classList.toggle('visible', el.scrollLeft > 4);
+    right.classList.toggle('visible', maxScroll > 4 && el.scrollLeft < maxScroll - 4);
+  }
+
+  function scrollNav(dir){
+    const el = document.getElementById('navLinks');
+    if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
   window.addEventListener('DOMContentLoaded', function(){
     syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    checkNavScroll();
+    const navLinks = document.getElementById('navLinks');
+    if(navLinks) navLinks.addEventListener('scroll', checkNavScroll);
+    window.addEventListener('resize', checkNavScroll);
   });
 </script>
 </body>

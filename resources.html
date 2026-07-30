@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources | Hermes x Sectors</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links-wrap">
+      <button class="nav-scroll-arrow nav-scroll-arrow--left" onclick="scrollNav(-1)" aria-label="Scroll left" tabindex="-1"><span class="nav-scroll-arrow-icon">‹</span></button>
+      <div class="nav-links" id="navLinks">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/module-1" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="/module-2" class="nav-link"><span class="nav-num">02</span>Architecture</a>
+      <a href="/module-3" class="nav-link"><span class="nav-num">03</span>Setup</a>
+      <a href="/module-4" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="/module-5" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Knowledge Wiki</a>
+      <a href="/module-7" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Automation</a>
+      <a href="/module-9" class="nav-link"><span class="nav-num">09</span>Level Up</a>
+    </div>
+      <button class="nav-scroll-arrow nav-scroll-arrow--right" onclick="scrollNav(1)" aria-label="Scroll right" tabindex="-1"><span class="nav-scroll-arrow-icon">›</span></button>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <div class="page-header-eyebrow">
+      Module 06 <span>/</span> Resources
+    </div>
+    <h1>Further Reading</h1>
+    <p class="page-header-desc">
+      The two sources Module 06 is built on, one describing the pattern, the other measuring why it pays off.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <!-- SOURCES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Sources</div>
+      <h2>The Original Materials</h2>
+
+      <div class="topic-item">
+        <span class="topic-num">01</span>
+        <div class="topic-content">
+          <h3>LLM Wiki (Karpathy Gist)</h3>
+          <p>Andrej Karpathy's idea file, published as a GitHub Gist on April 4, 2026, meant to be pasted into an agent's system prompt so it works out the specifics with you rather than following a finished spec. Covers the core idea (a persistent, compounding wiki instead of query-time retrieval), the three-layer architecture, the ingest/query/lint operations, and Karpathy's own tips on tooling. Module 06 is built directly from this source.</p>
+          <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:1rem;"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Read the gist</a>
+        </div>
+      </div>
+
+      <div class="topic-item">
+        <span class="topic-num">02</span>
+        <div class="topic-content">
+          <h3>Knowledge Compounding: An Empirical Economic Analysis of Self-Evolving Knowledge Wikis under the Agentic ROI Framework</h3>
+          <p>The empirical companion to the gist above. Where Karpathy proposes the pattern from practitioner experience, this paper tries to prove the same claim with numbers. It argues that classic Agentic ROI models wrongly assume each task's cost is independent of the last, an assumption that holds under standard RAG but breaks once a persistent knowledge layer is introduced. A controlled four-query experiment on the same domain found roughly a 6.5x reduction in cumulative token cost under a maintained wiki (47K tokens) versus a matched RAG baseline (305K tokens) by the fourth query, a measured cost curve for the same effect Karpathy described qualitatively.</p>
+          <a href="https://arxiv.org/abs/2604.11243" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:1rem;"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Read the paper</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div class="container">
+    <nav class="page-nav">
+      <a href="/module-6" class="page-nav-link">
+        <span class="page-nav-label">â Previous</span>
+        <span class="page-nav-title">Module 06: Building a Knowledge Wiki</span>
+      </a>
+      <a href="/module-7" class="page-nav-link page-nav-link--next">
+        <span class="page-nav-label">Continue â</span>
+        <span class="page-nav-title">Module 07: Multi-Agent Orchestration</span>
+      </a>
+    </nav>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  function checkNavScroll(){
+    const el = document.getElementById('navLinks');
+    const left = document.querySelector('.nav-scroll-arrow--left');
+    const right = document.querySelector('.nav-scroll-arrow--right');
+    if(!el || !left || !right) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    left.classList.toggle('visible', el.scrollLeft > 4);
+    right.classList.toggle('visible', maxScroll > 4 && el.scrollLeft < maxScroll - 4);
+  }
+
+  function scrollNav(dir){
+    const el = document.getElementById('navLinks');
+    if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    checkNavScroll();
+    const navLinks = document.getElementById('navLinks');
+    if(navLinks) navLinks.addEventListener('scroll', checkNavScroll);
+    window.addEventListener('resize', checkNavScroll);
+  });
+</script>
+</body>
+</html>

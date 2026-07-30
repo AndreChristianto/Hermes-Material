@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Module 06: Automation &amp; Cron | Hermes x Sectors</title>
+  <title>Module 06: Building a Knowledge Wiki | Hermes x Sectors</title>
   <script>
     (function(){
       const t = localStorage.getItem('hermes-theme') || 'dark';
@@ -21,16 +21,21 @@
       <div class="nav-brand-icon">H</div>
       <span class="nav-brand-text">Hermes x Sectors</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links-wrap">
+      <button class="nav-scroll-arrow nav-scroll-arrow--left" onclick="scrollNav(-1)" aria-label="Scroll left" tabindex="-1"><span class="nav-scroll-arrow-icon">‹</span></button>
+      <div class="nav-links" id="navLinks">
       <a href="/" class="nav-link">Home</a>
       <a href="/module-1" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
       <a href="/module-2" class="nav-link"><span class="nav-num">02</span>Architecture</a>
       <a href="/module-3" class="nav-link"><span class="nav-num">03</span>Setup</a>
       <a href="/module-4" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
       <a href="/module-5" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
-      <a href="/module-6" class="nav-link active"><span class="nav-num">06</span>Automation</a>
+      <a href="/module-6" class="nav-link active"><span class="nav-num">06</span>Knowledge Wiki</a>
       <a href="/module-7" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
-      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Automation</a>
+      <a href="/module-9" class="nav-link"><span class="nav-num">09</span>Level Up</a>
+    </div>
+      <button class="nav-scroll-arrow nav-scroll-arrow--right" onclick="scrollNav(1)" aria-label="Scroll right" tabindex="-1"><span class="nav-scroll-arrow-icon">›</span></button>
     </div>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
       <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -43,12 +48,15 @@
 <header class="page-header">
   <div class="container page-header-inner">
     <div class="page-header-eyebrow">
-      Module 06 <span>/</span> Automation &amp; Cron
+      Module 06 <span>/</span> Building a Knowledge Wiki
     </div>
-    <h1>Automation &amp; Cron</h1>
+    <h1>Building Your Own Knowledge Wiki</h1>
     <p class="page-header-desc">
-      Using Hermes's built-in cron to run financial workflows on a schedule, no external tools required.
+      A pattern for turning an LLM into a personal knowledge base that compounds over time instead of starting from zero on every question, the same idea behind Hermes's own memory, applied to everything you read and research.
     </p>
+    <div class="page-header-actions">
+      <a href="https://obsidian.md/" target="_blank" rel="noopener" class="btn btn-blue"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Download Obsidian</a>
+    </div>
   </div>
 </header>
 
@@ -60,163 +68,172 @@
       <div class="objectives">
         <div class="objectives-title">Learning Objectives</div>
         <ul>
-          <li>Set up a scheduled task using Hermes's built-in cron.</li>
-          <li>Design at least one practical recurring Sectors workflow.</li>
-          <li>Write self-contained prompts that survive a fresh, memory-less cron session.</li>
-          <li>Understand what running Hermes on a VPS enables vs local-only operation.</li>
+          <li>Explain why standard RAG doesn't accumulate knowledge, and what a persistent wiki does differently.</li>
+          <li>Describe the three-layer architecture: raw sources, the wiki, and the schema.</li>
+          <li>Walk through the three core operations, ingest, query, and lint.</li>
+          <li>Set up Obsidian and know where to start a wiki of your own.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- WHY SCHEDULING MATTERS -->
+  <!-- WHY RAG DOESN'T ACCUMULATE -->
   <section class="section">
     <div class="container">
-      <div class="section-label">The Case for Automation</div>
-      <h2>Why Scheduling Matters</h2>
-      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
-        A tool you only open when you remember is still reactive. Scheduling makes Hermes genuinely autonomous, running the workflow and delivering the result without you starting anything. It has a built-in cron system, no external scheduler needed, that runs as long as the gateway is up.
-      </p>
-    </div>
-  </section>
-
-  <!-- CRON BASICS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Scheduling</div>
-      <h2>How Scheduling Works</h2>
+      <div class="section-label">The Problem</div>
+      <h2>Why RAG Doesn't Accumulate</h2>
       <p class="section-intro">
-        Describe the schedule in plain language when you set up the task, "every weekday at 7am" or "every Friday at 4:30pm" works fine. No cron syntax to write by hand.
+        Most people's experience with LLMs and documents looks like RAG, the pattern behind NotebookLM and most chat file uploads. You upload a pile of files, the LLM retrieves relevant chunks at query time, and generates an answer.
       </p>
-
-      <h3 style="margin-top:2rem;margin-bottom:1rem;">The Golden Rule for Scheduled Prompts</h3>
       <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;">
-        Cron jobs run in fresh sessions with no memory of the chat that set them up. Every prompt must be self-contained, no "do the usual thing," spell out what to pull, from where, and where to send it.
+        This works, but nothing accumulates. Ask a subtle question that needs five documents synthesized, and the LLM re-finds and re-pieces the same fragments every time. Nothing is ever built up, the next question starts from scratch again.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE CORE IDEA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">The Pattern</div>
+      <h2>The Core Idea</h2>
+      <p class="section-intro">
+        Andrej Karpathy described an alternative: instead of retrieving from raw documents at query time, the LLM incrementally builds and maintains a persistent wiki, a structured, interlinked set of markdown files sitting between you and the raw sources. When a new source comes in, the LLM reads it, extracts what matters, and integrates it into the existing wiki, updating pages, revising summaries, flagging contradictions with older claims. The knowledge is compiled once, then kept current, not re-derived on every query.
       </p>
 
-      <div class="info-box" style="margin-top:1rem;">
-        <span class="info-box-icon">→</span>
-        <span>For monitoring jobs that shouldn't spam you, use the <code>[SILENT]</code> convention: Hermes responds with just that token when nothing's worth reporting.</span>
+      <div class="info-box">
+        <span class="info-box-icon">â</span>
+        <span>Karpathy's own summary of the division of labor: Obsidian is the IDE, the LLM is the programmer, the wiki is the codebase, and you are the architect. You curate sources, direct the analysis, and ask questions. The LLM does the summarizing, cross-referencing, filing, and bookkeeping.</span>
       </div>
 
-      <div class="info-box" style="margin-top:0.75rem;">
-        <span class="info-box-icon">⚙</span>
-        <div>
-          If a message is fully determined by a script, Hermes can run it in "no-agent mode":
-          <ul class="content-list" style="margin:0.5rem 0 0;">
-            <li>Stdout delivered directly</li>
-            <li>Zero model calls</li>
-            <li>Zero token spend</li>
-          </ul>
-          <span style="display:block;margin-top:0.5rem;">No need to request this, plain language like "ping me if RAM is over 85%" is enough.</span>
+      <h3 style="margin-top:2rem;margin-bottom:1rem;">Three-Layer Architecture</h3>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>What it is</th>
+            <th>Who owns it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Raw sources</td>
+            <td>Curated, immutable source documents, articles, papers, transcripts. The source of truth.</td>
+            <td>You, read-only for the LLM</td>
+          </tr>
+          <tr>
+            <td>The wiki</td>
+            <td>LLM-generated markdown pages, summaries, entity pages, concepts, an index, a log.</td>
+            <td>The LLM, entirely</td>
+          </tr>
+          <tr>
+            <td>The schema</td>
+            <td>A config document telling the LLM the wiki's conventions and workflows.</td>
+            <td>Co-evolved by both of you</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- OPERATIONS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">How It Actually Works</div>
+      <h2>Three Operations</h2>
+      <p class="section-intro">
+        Everything the pattern does breaks down into three repeatable actions.
+      </p>
+
+      <div class="arch-list">
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">Ingest</div>
+            <p class="arch-item-desc">Drop a new source in. The LLM reads it, writes or updates a summary page, updates the index, touches relevant entity and concept pages across the wiki, a single source might touch 10 to 15 pages, and appends a log entry.</p>
+          </div>
+        </div>
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">Query</div>
+            <p class="arch-item-desc">Ask a question, the LLM searches the wiki, not the raw sources, and synthesizes an answer with citations. Good answers get filed back into the wiki as new pages rather than disappearing into chat history, so explorations compound the same way ingested sources do.</p>
+          </div>
+        </div>
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">Lint</div>
+            <p class="arch-item-desc">Periodically health-check the wiki for contradictions between pages, stale claims superseded by newer sources, orphan pages with no inbound links, and missing cross-references.</p>
+          </div>
         </div>
       </div>
 
-      <div class="notice notice--amber" style="margin-top:1rem;">
-        <span class="notice-icon">!</span>
-        <span>Cron jobs run with the <code>cronjob</code>, <code>messaging</code>, and <code>clarify</code> toolsets disabled, so skills needing interactive confirmation won't work headless. If a job silently fails, check the gateway is running and the timezone is right first, the two most common causes.</span>
+      <div class="info-box" style="margin-top:1.5rem;">
+        <span class="info-box-icon">â</span>
+        <span>Two special files keep a growing wiki navigable. <code>index.md</code> is content-oriented, a catalog of every page with a one-line summary, updated on every ingest. <code>log.md</code> is chronological and append-only, useful in a consistent-prefix format so it stays grep-able.</span>
       </div>
     </div>
   </section>
 
-  <!-- REAL EXAMPLE -->
+  <!-- WHY IT WORKS -->
   <section class="section">
     <div class="container">
-      <div class="section-label">A Real Example</div>
-      <h2>Not Every Job Needs to Be a Hermes Prompt</h2>
-      <p class="section-intro">
-        A standalone script on a VPS, triggered by plain OS-level cron, works well for deterministic jobs, fetch data, summarize cheaply, write a file, no reasoning needed. A daily AI news digest is a good example: a script pulls top Hacker News stories, summarizes them with a free-tier API, and writes the result straight to a file, all outside Hermes entirely.
+      <div class="section-label">The Mechanism</div>
+      <h2>Why It Works</h2>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1rem;">
+        The tedious part of a knowledge base was never the reading or thinking, it's the bookkeeping, updating cross-references, keeping summaries current, flagging contradictions. Humans abandon wikis because maintenance cost grows faster than value. LLMs do not get bored, do not forget a cross-reference, and can touch 15 files in one pass, so the wiki stays maintained because the cost of maintaining it is near zero.
       </p>
-      <div class="code-block">
-        <div class="code-block-label">Cron entry</div>
-        <pre>0 7 * * * GEMINI_API_KEY=your-key VAULT_DIR=/root/vault python3 /root/scripts/news_digest.py >> /root/news_digest.log 2>&1</pre>
-      </div>
       <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;">
-        Runs daily at 7 AM server time. Check the VPS's timezone first with <code>timedatectl</code>, cron uses local system time. Save Hermes's own scheduling for jobs that genuinely need judgment, not just a fetch-and-format loop.
+        The idea traces back to Vannevar Bush's Memex (1945), a personal, curated knowledge store with associative trails between documents. Bush's vision never solved who does the maintenance. This pattern's answer is that the LLM does.
       </p>
     </div>
   </section>
 
-  <!-- PRACTICAL SCENARIOS -->
+  <!-- WHY THIS PAIRS WELL WITH AGENT MEMORY -->
   <section class="section">
     <div class="container">
-      <div class="section-label">Workflows</div>
-      <h2>Practical Scenarios with Sectors</h2>
+      <div class="section-label">Connecting the Dots</div>
+      <h2>Why This Pairs Well With Agent Memory</h2>
       <p class="section-intro">
-        Three recurring workflows that provide real daily value. Each prompt is self-contained, per the golden rule above.
+        Module 05 covered how Hermes maintains SOUL.md, MEMORY.md, and USER.md, a small, durable model of you and your preferences, read before every conversation. A knowledge wiki is the same idea applied to everything you read and research, rather than just facts about you.
       </p>
-
-      <div class="competency-list">
-        <div class="competency-item fade-up">
-          <span class="competency-num">01</span>
-          <div class="competency-text">
-            <strong>Morning Briefing (Weekdays, 7 AM)</strong>
-            Pull yesterday's top 3 IDX movers. For each, include the percentage change and a one-line note from Sectors news. Deliver to Telegram before you start your day.
-            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
-              <div class="code-block-label">Prompt</div>
-              <pre>Pull the top 3 IDX stock movers from yesterday. For each, show the ticker, percentage change, and a one-line summary of any Sectors news. Send to Telegram.</pre>
-            </div>
-          </div>
-        </div>
-
-        <div class="competency-item fade-up">
-          <span class="competency-num">02</span>
-          <div class="competency-text">
-            <strong>Weekly Portfolio Snapshot (Fridays, 4 PM)</strong>
-            Compare your watchlist stocks against their 30-day performance. Summarize in a table and send to Telegram ahead of the weekend.
-            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
-              <div class="code-block-label">Prompt</div>
-              <pre>Compare BBCA, BMRI, and TLKM's current price against 30 days ago. Show the change as a percentage. Format as a table and send to Telegram.</pre>
-            </div>
-          </div>
-        </div>
-
-        <div class="competency-item fade-up">
-          <span class="competency-num">03</span>
-          <div class="competency-text">
-            <strong>Price Threshold Alert (Hourly)</strong>
-            Hermes checks BBCA's price every hour. If it drops below a threshold you define, send an immediate Telegram message.
-            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
-              <div class="code-block-label">Prompt</div>
-              <pre>Check BBCA's current price. If it is below 9500 IDR, send a Telegram message: "Alert: BBCA has dropped below 9500. Current price: [price]."</pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RUNNING ON VPS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">Always-On Operation</div>
-      <h2>Running on a VPS</h2>
-      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
-        Local means the gateway runs only while your machine is on, close your laptop and the morning briefing doesn't run. A VPS fixes that. Setup mirrors local (SOUL.md, Sectors MCP, messaging), but Hermes runs as a Docker container with a restart policy so it survives reboots:
-      </p>
-      <div class="code-block">
-        <div class="code-block-label">Persistent gateway on a VPS</div>
-        <pre>docker run -d --name hermes --restart unless-stopped -v ~/.hermes:/opt/data -p 8642:8642 nousresearch/hermes-agent gateway run</pre>
-      </div>
-      <p style="font-size:0.85rem;color:var(--text2);line-height:1.75;">
-        Run setup over SSH directly, not a browser-based VPS console, some corrupt special characters like <code>:</code> and <code>@</code> in tokens and keys.
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;">
+        An agent with persistent memory already has half the infrastructure this pattern needs. Point that same agent at a folder of markdown files and a schema document, and you have a research partner that gets more useful the more you feed it, instead of one that starts over every session.
       </p>
     </div>
   </section>
 
-  <!-- SAFETY NOTE -->
+  <!-- GET STARTED -->
   <section class="section">
     <div class="container">
-      <div class="section-label">Safety</div>
-      <h2>A Note on Safety with Scheduled Tasks</h2>
-      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
-        Command approval prompts interrupt scheduled tasks by default. For the 7 AM briefing to run unattended, the workflow needs to stick to read and messaging operations only, nothing that triggers approval.
+      <div class="section-label">Get Started</div>
+      <h2>Starting a Wiki of Your Own</h2>
+      <p class="section-intro">
+        This is intentionally an idea, not a finished spec. The exact structure, schema, and tooling depend on your domain and your LLM of choice.
       </p>
-      <div class="notice notice--amber">
-        <span class="notice-icon">★</span>
-        <div>
-          Configure only <strong>read</strong> and <strong>messaging</strong> as trusted for scheduled workflows, never write or delete. The briefing runs unattended, destructive actions still need you present.
+
+      <div class="tool-compare">
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Install Obsidian</div>
+          <p class="tool-compare-desc">Free, local-first markdown editor. It's the IDE in Karpathy's framing, you browse and read what the LLM writes, following links and checking the graph view.</p>
         </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Write a schema document</div>
+          <p class="tool-compare-desc">A short file (this course's example is a Writing Style Guide) telling your agent the wiki's conventions, note types, and how to handle ingest, query, and lint.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Ingest your first source</div>
+          <p class="tool-compare-desc">Point your agent at one article or paper and ask it to file it into the wiki following the schema. Everything else grows from there.</p>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">â</span>
+        <span>Want the sources this module is built on, the original gist plus the paper that measures the cost savings? See the Resources page.</span>
+      </div>
+      <div class="page-header-actions" style="margin-top:1rem;">
+        <a href="/resources" class="btn btn-outline">Visit Resources â</a>
       </div>
     </div>
   </section>
@@ -225,11 +242,11 @@
   <div class="container">
     <nav class="page-nav">
       <a href="/module-5" class="page-nav-link">
-        <span class="page-nav-label">← Previous</span>
+        <span class="page-nav-label">â Previous</span>
         <span class="page-nav-title">Module 05: Memory &amp; Skills</span>
       </a>
       <a href="/module-7" class="page-nav-link page-nav-link--next">
-        <span class="page-nav-label">Next →</span>
+        <span class="page-nav-label">Next â</span>
         <span class="page-nav-title">Module 07: Multi-Agent Orchestration</span>
       </a>
     </nav>
@@ -263,8 +280,27 @@
     if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
   }
 
+  function checkNavScroll(){
+    const el = document.getElementById('navLinks');
+    const left = document.querySelector('.nav-scroll-arrow--left');
+    const right = document.querySelector('.nav-scroll-arrow--right');
+    if(!el || !left || !right) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    left.classList.toggle('visible', el.scrollLeft > 4);
+    right.classList.toggle('visible', maxScroll > 4 && el.scrollLeft < maxScroll - 4);
+  }
+
+  function scrollNav(dir){
+    const el = document.getElementById('navLinks');
+    if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
   window.addEventListener('DOMContentLoaded', function(){
     syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    checkNavScroll();
+    const navLinks = document.getElementById('navLinks');
+    if(navLinks) navLinks.addEventListener('scroll', checkNavScroll);
+    window.addEventListener('resize', checkNavScroll);
   });
 </script>
 </body>

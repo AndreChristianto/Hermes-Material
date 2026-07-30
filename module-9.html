@@ -1,0 +1,333 @@
+ï»¿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 09: Level Up | Hermes x Sectors</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links-wrap">
+      <button class="nav-scroll-arrow nav-scroll-arrow--left" onclick="scrollNav(-1)" aria-label="Scroll left" tabindex="-1"><span class="nav-scroll-arrow-icon">‹</span></button>
+      <div class="nav-links" id="navLinks">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/module-1" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="/module-2" class="nav-link"><span class="nav-num">02</span>Architecture</a>
+      <a href="/module-3" class="nav-link"><span class="nav-num">03</span>Setup</a>
+      <a href="/module-4" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="/module-5" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Knowledge Wiki</a>
+      <a href="/module-7" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Automation</a>
+      <a href="/module-9" class="nav-link active"><span class="nav-num">09</span>Level Up</a>
+    </div>
+      <button class="nav-scroll-arrow nav-scroll-arrow--right" onclick="scrollNav(1)" aria-label="Scroll right" tabindex="-1"><span class="nav-scroll-arrow-icon">›</span></button>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <div class="page-header-eyebrow">
+      Module 09 <span>/</span> Level Up Your Agent
+    </div>
+    <h1>Level Up Your Agent</h1>
+    <p class="page-header-desc">
+      From a working agent to a well-tuned one, covering SOUL.md refinement, skill library curation, deployment options, and knowing when Hermes is the right tool.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <!-- TUNE SOUL.MD -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Highest-Leverage Action</div>
+      <h2>Tune SOUL.md</h2>
+      <p class="section-intro">
+        SOUL.md is the highest-leverage thing you control. A generic SOUL.md makes a generic agent, and time spent here compounds with every conversation.
+      </p>
+
+      <div class="competency-list">
+        <div class="competency-item fade-up">
+          <span class="competency-num">01</span>
+          <div class="competency-text">
+            <strong>Give it a persona and a hard scope</strong>
+            "You are a financial research assistant focused on Indonesian banking and telecommunications. You always pull live data from Sectors before answering about a stock. You do not speculate about future prices or make buy/sell recommendations."
+          </div>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">02</span>
+          <div class="competency-text">
+            <strong>Define output format explicitly</strong>
+            Want tables for comparisons? Prices in IDR? Say so once in SOUL.md, and stop repeating the same request every session.
+          </div>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">03</span>
+          <div class="competency-text">
+            <strong>Set action guardrails</strong>
+            For anything that sends a message or writes a file: "Before sending any message or writing any file, confirm with the user unless the action is part of a pre-approved scheduled task."
+          </div>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">04</span>
+          <div class="competency-text">
+            <strong>Iterate in small steps</strong>
+            Change one instruction at a time, run the same test prompt before and after. Keep notes on what improved, don't rewrite everything at once.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW SKILL LIBRARY -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Skill Curation</div>
+      <h2>Review Your Skill Library</h2>
+      <p class="section-intro">
+        After a few sessions, Hermes will have auto-generated skills, not all of them good. Regular curation keeps the library clean and the agent fast.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block-label">List and search skills, from within a chat</div>
+        <pre>/skills
+/skills search &lt;term&gt;</pre>
+      </div>
+
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;">
+        Browse published skills in the Hermes Hub. With <code>skills.write_approval</code> on, review pending writes:
+      </p>
+
+      <div class="code-block">
+        <div class="code-block-label">Review staged skill writes</div>
+        <pre>/skills pending
+/skills diff &lt;id&gt;
+/skills approve &lt;id&gt;
+/skills reject &lt;id&gt;</pre>
+      </div>
+
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;">
+        Each skill is plain markdown in <code>~/.hermes/skills/</code>, open, edit, or delete it like any other file.
+      </p>
+
+      <h3 style="margin-top:1.75rem;margin-bottom:0.75rem;">What to Look For</h3>
+      <ul class="content-list">
+        <li><strong>Overly specific skills</strong>, written for one exact prompt, not reusable. Inflate the library without adding value.</li>
+        <li><strong>Skills based on bad reasoning</strong>, sometimes generalized from a poor first attempt. Delete and let Hermes rebuild from better inputs.</li>
+        <li><strong>Duplicates</strong>, two skills doing the same thing, written at different times. Keep the better one.</li>
+      </ul>
+
+      <div class="info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">â</span>
+        <span>A leaner library runs faster. Cull monthly once the agent's been running a while.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPLOYMENT OPTIONS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Deployment</div>
+      <h2>Deployment Options</h2>
+      <p class="section-intro">
+        The same three install paths from Module 03, revisited now that you know what you need.
+      </p>
+
+      <div class="arch-list">
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">Terminal</div>
+            <p class="arch-item-desc">Runs while your machine is on, good for experimentation, zero infrastructure cost. You don't need a VPS to get value from Hermes.</p>
+          </div>
+        </div>
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">Desktop App</div>
+            <p class="arch-item-desc">Same core, config, sessions, skills, memory, with a polished UI. Already on terminal? Launch it with <code>hermes desktop</code>.</p>
+          </div>
+        </div>
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">VPS + Docker</div>
+            <p class="arch-item-desc">Always-on, independent of any single machine, the path for workflows that need to run while your laptop's closed. Upgrading is pulling a new image, no lost config, skills, or memory.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERMES VS OPENCLAW -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Decision Framework</div>
+      <h2>Hermes vs OpenClaw: When to Use Which</h2>
+      <p class="section-intro">
+        Both tools work. Switching from OpenClaw? <code>hermes claw migrate</code> imports persona, memory, skills, model config, and tokens automatically, previewing and backing up first. A few things like <code>HEARTBEAT.md</code> need manual redoing.
+      </p>
+
+      <div class="tool-compare">
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">OpenClaw</div>
+          <p class="tool-compare-desc">
+            Broad channel coverage (Discord, Telegram, WhatsApp, Slack, all at once) and a large skill library on ClawHub, installable in one command. Better fit when breadth and quick deployment matter more than an agent that rewrites its own procedures.
+          </p>
+        </div>
+        <div class="tool-compare-item tool-compare-item--highlight">
+          <div class="tool-compare-name">â Hermes</div>
+          <p class="tool-compare-desc">
+            A personal daily workflow that repeats and improves over time. Memory and learning built in, no add-ons. Safer defaults with command approval. Trade some flexibility for an agent that gets meaningfully better the more you use it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY & NEXT STEPS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Continue Learning</div>
+      <h2>Community &amp; Next Steps</h2>
+      <p class="section-intro">
+        Where to go after this workshop ends.
+      </p>
+
+      <div class="competency-list">
+        <div class="competency-item fade-up">
+          <span class="competency-num">01</span>
+          <div class="competency-text">
+            <strong>Hermes docs, hermes-agent.nousresearch.com</strong>
+            Install, MCP, skills, delegation, voice mode, and cron, in more depth than this workshop has time for.
+          </div>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">02</span>
+          <div class="competency-text">
+            <strong>GitHub, github.com/NousResearch/hermes-agent</strong>
+            Issues, discussions, the source. Fixes show up here first.
+          </div>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">03</span>
+          <div class="competency-text">
+            <strong>Community hub or Discord</strong>
+            Check the docs site for the current link before sharing one with a class.
+          </div>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">04</span>
+          <div class="competency-text">
+            <strong>Sectors API Docs, sectors.app</strong>
+            The full API reference for designing custom scheduled workflows.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSE COMPLETE -->
+  <section class="section">
+    <div class="container" style="text-align:center;padding:1rem 0 0.5rem;">
+      <div class="section-label" style="justify-content:center;">Complete</div>
+      <h2 style="margin-bottom:1rem;">You've Finished the Course</h2>
+      <p style="font-size:0.9rem;color:var(--text2);max-width:560px;margin:0 auto 2rem;line-height:1.75;">
+        You have a working Hermes agent connected to live Indonesian market data and scheduled workflows. The rest is iteration.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/" class="btn btn-outline">â Back to Course Home</a>
+        <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="btn btn-gold"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Hermes Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div class="container">
+    <nav class="page-nav">
+      <a href="/module-8" class="page-nav-link">
+        <span class="page-nav-label">â Previous</span>
+        <span class="page-nav-title">Module 08: Automation &amp; Cron</span>
+      </a>
+      <a href="/" class="page-nav-link page-nav-link--next">
+        <span class="page-nav-label">Done â</span>
+        <span class="page-nav-title">Course Home</span>
+      </a>
+    </nav>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  function checkNavScroll(){
+    const el = document.getElementById('navLinks');
+    const left = document.querySelector('.nav-scroll-arrow--left');
+    const right = document.querySelector('.nav-scroll-arrow--right');
+    if(!el || !left || !right) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    left.classList.toggle('visible', el.scrollLeft > 4);
+    right.classList.toggle('visible', maxScroll > 4 && el.scrollLeft < maxScroll - 4);
+  }
+
+  function scrollNav(dir){
+    const el = document.getElementById('navLinks');
+    if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    checkNavScroll();
+    const navLinks = document.getElementById('navLinks');
+    if(navLinks) navLinks.addEventListener('scroll', checkNavScroll);
+    window.addEventListener('resize', checkNavScroll);
+  });
+</script>
+</body>
+</html>

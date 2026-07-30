@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
@@ -23,16 +23,21 @@
       <div class="nav-brand-icon">H</div>
       <span class="nav-brand-text">Hermes x Sectors</span>
     </a>
-    <div class="nav-links">
-      <a href="/" class="nav-link active">Home</a>
+    <div class="nav-links-wrap">
+      <button class="nav-scroll-arrow nav-scroll-arrow--left" onclick="scrollNav(-1)" aria-label="Scroll left" tabindex="-1"><span class="nav-scroll-arrow-icon">‹</span></button>
+      <div class="nav-links" id="navLinks">
+      <a href="/" class="nav-link">Home</a>
       <a href="/module-1" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
       <a href="/module-2" class="nav-link"><span class="nav-num">02</span>Architecture</a>
       <a href="/module-3" class="nav-link"><span class="nav-num">03</span>Setup</a>
       <a href="/module-4" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
       <a href="/module-5" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
-      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="/module-6" class="nav-link"><span class="nav-num">06</span>Knowledge Wiki</a>
       <a href="/module-7" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
-      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+      <a href="/module-8" class="nav-link"><span class="nav-num">08</span>Automation</a>
+      <a href="/module-9" class="nav-link"><span class="nav-num">09</span>Level Up</a>
+    </div>
+      <button class="nav-scroll-arrow nav-scroll-arrow--right" onclick="scrollNav(1)" aria-label="Scroll right" tabindex="-1"><span class="nav-scroll-arrow-icon">›</span></button>
     </div>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
       <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -57,7 +62,7 @@
       Docs and downloads: <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">hermes-agent.nousresearch.com</a> and <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">github.com/NousResearch/hermes-agent</a>.
     </p>
     <div class="hero-actions fade-up">
-      <a href="/module-1" class="btn btn-gold">Start Module 01 →</a>
+      <a href="/module-1" class="btn btn-gold">Start Module 01 â</a>
       <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="btn btn-outline"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Hermes Docs</a>
     </div>
   </div>
@@ -85,7 +90,7 @@
 <section class="section">
   <div class="container">
     <div class="section-label">Learning Path</div>
-    <h2>All 8 Modules</h2>
+    <h2>All 9 Modules</h2>
     <p class="section-intro">From foundations to a fully running, scheduled financial agent.</p>
     <table class="lp-table">
       <thead>
@@ -123,8 +128,8 @@
         </tr>
         <tr>
           <td>06</td>
-          <td><a href="/module-6">Automation &amp; Cron</a></td>
-          <td>Cron workflows, self-contained prompts, VPS</td>
+          <td><a href="/module-6">Building a Knowledge Wiki</a></td>
+          <td>The LLM-wiki pattern, three-layer architecture, ingest/query/lint</td>
         </tr>
         <tr>
           <td>07</td>
@@ -133,7 +138,12 @@
         </tr>
         <tr>
           <td>08</td>
-          <td><a href="/module-8">Level Up</a></td>
+          <td><a href="/module-8">Automation &amp; Cron</a></td>
+          <td>Cron workflows, self-contained prompts, VPS</td>
+        </tr>
+        <tr>
+          <td>09</td>
+          <td><a href="/module-9">Level Up</a></td>
           <td>SOUL.md tuning, skill curation, OpenClaw migration</td>
         </tr>
       </tbody>
@@ -153,49 +163,55 @@
         <div class="module-card-num">01</div>
         <div class="module-card-title">What is Hermes?</div>
         <div class="module-card-desc">The line between a chatbot and an agent, and where Hermes sits.</div>
-        <span class="module-card-arrow">→</span>
+        <span class="module-card-arrow">â</span>
       </a>
       <a href="/module-2" class="module-card fade-up">
         <div class="module-card-num">02</div>
         <div class="module-card-title">Hermes Architecture</div>
         <div class="module-card-desc">The self-improvement loop, memory files, and security model.</div>
-        <span class="module-card-arrow">→</span>
+        <span class="module-card-arrow">â</span>
       </a>
       <a href="/module-3" class="module-card fade-up">
         <div class="module-card-num">03</div>
         <div class="module-card-title">Setup &amp; Installation</div>
         <div class="module-card-desc">Install, first run, SOUL.md, Nous Portal, Telegram and Discord.</div>
-        <span class="module-card-arrow">→</span>
+        <span class="module-card-arrow">â</span>
       </a>
       <a href="/module-4" class="module-card fade-up">
         <div class="module-card-num">04</div>
         <div class="module-card-title">Sectors MCP Integration</div>
         <div class="module-card-desc">Connect live Indonesian market data to your agent.</div>
-        <span class="module-card-arrow">→</span>
+        <span class="module-card-arrow">â</span>
       </a>
       <a href="/module-5" class="module-card fade-up">
         <div class="module-card-num">05</div>
         <div class="module-card-title">Memory &amp; Skills</div>
         <div class="module-card-desc">SOUL.md, MEMORY.md, USER.md, and watching a skill get created live.</div>
-        <span class="module-card-arrow">→</span>
+        <span class="module-card-arrow">â</span>
       </a>
       <a href="/module-6" class="module-card fade-up">
         <div class="module-card-num">06</div>
-        <div class="module-card-title">Automation &amp; Cron</div>
-        <div class="module-card-desc">Hermes's built-in cron, recurring workflows, VPS deployment.</div>
-        <span class="module-card-arrow">→</span>
+        <div class="module-card-title">Building a Knowledge Wiki</div>
+        <div class="module-card-desc">Turn an LLM into a personal knowledge base that compounds instead of starting over.</div>
+        <span class="module-card-arrow">â</span>
       </a>
       <a href="/module-7" class="module-card fade-up">
         <div class="module-card-num">07</div>
         <div class="module-card-title">Multi-Agent Orchestration</div>
         <div class="module-card-desc">The Kanban board, delegation, and a working multi-agent research pipeline.</div>
-        <span class="module-card-arrow">→</span>
+        <span class="module-card-arrow">â</span>
       </a>
       <a href="/module-8" class="module-card fade-up">
         <div class="module-card-num">08</div>
+        <div class="module-card-title">Automation &amp; Cron</div>
+        <div class="module-card-desc">Hermes's built-in cron, recurring workflows, VPS deployment.</div>
+        <span class="module-card-arrow">â</span>
+      </a>
+      <a href="/module-9" class="module-card fade-up">
+        <div class="module-card-num">09</div>
         <div class="module-card-title">Level Up Your Agent</div>
         <div class="module-card-desc">SOUL.md refinement, skill curation, deployment options.</div>
-        <span class="module-card-arrow">→</span>
+        <span class="module-card-arrow">â</span>
       </a>
     </div>
   </div>
@@ -263,8 +279,27 @@
     if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
   }
 
+  function checkNavScroll(){
+    const el = document.getElementById('navLinks');
+    const left = document.querySelector('.nav-scroll-arrow--left');
+    const right = document.querySelector('.nav-scroll-arrow--right');
+    if(!el || !left || !right) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    left.classList.toggle('visible', el.scrollLeft > 4);
+    right.classList.toggle('visible', maxScroll > 4 && el.scrollLeft < maxScroll - 4);
+  }
+
+  function scrollNav(dir){
+    const el = document.getElementById('navLinks');
+    if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
   window.addEventListener('DOMContentLoaded', function(){
     syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    checkNavScroll();
+    const navLinks = document.getElementById('navLinks');
+    if(navLinks) navLinks.addEventListener('scroll', checkNavScroll);
+    window.addEventListener('resize', checkNavScroll);
   });
 </script>
 </body>
