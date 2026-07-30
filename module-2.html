@@ -90,7 +90,7 @@
 
   <!-- SELF-IMPROVEMENT LOOP -->
   <section class="section">
-    <div class="container">
+    <div class="container container--wide">
       <div class="section-label">Core Mechanism</div>
       <h2>The Self-Improvement Loop</h2>
       <p class="section-intro">
@@ -98,46 +98,46 @@
       </p>
 
       <div class="diagram-wrap">
-        <svg viewBox="0 0 1070 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Task runs, background review checks four triggers, if any one fires skill_manage writes or revises SKILL.md and USER.md updates, otherwise nothing changes">
+        <svg viewBox="0 0 760 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Task runs, background review checks four triggers, if any one fires skill_manage writes or revises SKILL.md and USER.md updates, otherwise nothing changes">
           <defs>
-            <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="var(--text3)"></path>
             </marker>
           </defs>
-          <g font-family="var(--mono)" font-size="12">
-            <rect x="10" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
-            <text x="125" y="38" text-anchor="middle" fill="var(--text)" font-weight="600">You Give a Task</text>
-            <line x1="25" y1="50" x2="225" y2="50" stroke="var(--border)" stroke-width="1"></line>
-            <text x="125" y="121" text-anchor="middle" fill="var(--text3)" font-size="10.5">Hermes executes it</text>
+          <g font-family="var(--mono)" font-size="15">
+            <rect x="20" y="20" width="320" height="190" rx="8" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="180" y="52" text-anchor="middle" fill="var(--text)" font-weight="600">You Give a Task</text>
+            <line x1="38" y1="70" x2="322" y2="70" stroke="var(--border)" stroke-width="1"></line>
+            <text x="180" y="140" text-anchor="middle" fill="var(--text3)" font-size="14">Hermes executes it</text>
 
-            <line x1="240" y1="100" x2="278" y2="100" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
+            <line x1="340" y1="115" x2="410" y2="115" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
 
-            <rect x="280" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
-            <text x="395" y="38" text-anchor="middle" fill="var(--text)" font-weight="600">Background Review Runs</text>
-            <line x1="295" y1="50" x2="495" y2="50" stroke="var(--border)" stroke-width="1"></line>
-            <text x="395" y="68" text-anchor="middle" fill="var(--text3)" font-size="10">Fires if ANY one is true:</text>
-            <text x="300" y="86" fill="var(--text2)" font-size="10">•  5+ tool calls succeeded</text>
-            <text x="300" y="102" fill="var(--text2)" font-size="10">•  it worked through an error</text>
-            <text x="300" y="118" fill="var(--text2)" font-size="10">•  you corrected it</text>
-            <text x="300" y="134" fill="var(--text2)" font-size="10">•  it was a non-trivial workflow</text>
-            <line x1="300" y1="148" x2="490" y2="148" stroke="var(--border)" stroke-width="1"></line>
-            <text x="395" y="167" text-anchor="middle" fill="var(--text3)" font-size="10">None true → no change made</text>
+            <rect x="420" y="20" width="320" height="190" rx="8" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="580" y="52" text-anchor="middle" fill="var(--text)" font-weight="600">Background Review Runs</text>
+            <line x1="438" y1="70" x2="722" y2="70" stroke="var(--border)" stroke-width="1"></line>
+            <text x="580" y="93" text-anchor="middle" fill="var(--text3)" font-size="14">Fires if ANY one is true:</text>
+            <text x="440" y="114" fill="var(--text2)" font-size="14">•  5+ tool calls succeeded</text>
+            <text x="440" y="134" fill="var(--text2)" font-size="14">•  it worked through an error</text>
+            <text x="440" y="154" fill="var(--text2)" font-size="14">•  you corrected it</text>
+            <text x="440" y="174" fill="var(--text2)" font-size="14">•  it was a non-trivial workflow</text>
+            <line x1="440" y1="188" x2="720" y2="188" stroke="var(--border)" stroke-width="1"></line>
+            <text x="580" y="204" text-anchor="middle" fill="var(--text3)" font-size="12.5">None true → no change made</text>
 
-            <line x1="510" y1="100" x2="548" y2="100" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
+            <line x1="580" y1="210" x2="580" y2="280" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
 
-            <rect x="550" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
-            <text x="665" y="38" text-anchor="middle" fill="var(--accent)" font-weight="600">skill_manage</text>
-            <line x1="565" y1="50" x2="765" y2="50" stroke="var(--border)" stroke-width="1"></line>
-            <text x="665" y="104" text-anchor="middle" fill="var(--text3)" font-size="10">Writes or revises</text>
-            <text x="665" y="122" text-anchor="middle" fill="var(--text3)" font-size="10">SKILL.md, or /learn</text>
-            <text x="665" y="140" text-anchor="middle" fill="var(--text3)" font-size="10">triggers it directly</text>
+            <rect x="420" y="290" width="320" height="190" rx="8" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="580" y="322" text-anchor="middle" fill="var(--accent)" font-weight="600">skill_manage</text>
+            <line x1="438" y1="340" x2="722" y2="340" stroke="var(--border)" stroke-width="1"></line>
+            <text x="580" y="385" text-anchor="middle" fill="var(--text3)" font-size="14">Writes or revises</text>
+            <text x="580" y="407" text-anchor="middle" fill="var(--text3)" font-size="14">SKILL.md, or /learn</text>
+            <text x="580" y="429" text-anchor="middle" fill="var(--text3)" font-size="14">triggers it directly</text>
 
-            <line x1="780" y1="100" x2="818" y2="100" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
+            <line x1="420" y1="385" x2="350" y2="385" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
 
-            <rect x="820" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
-            <text x="935" y="38" text-anchor="middle" fill="var(--text)" font-weight="600" font-size="11">USER.md</text>
-            <line x1="835" y1="50" x2="1035" y2="50" stroke="var(--border)" stroke-width="1"></line>
-            <text x="935" y="121" text-anchor="middle" fill="var(--text3)" font-size="10">Updates too</text>
+            <rect x="20" y="290" width="320" height="190" rx="8" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="180" y="322" text-anchor="middle" fill="var(--text)" font-weight="600">USER.md</text>
+            <line x1="38" y1="340" x2="322" y2="340" stroke="var(--border)" stroke-width="1"></line>
+            <text x="180" y="407" text-anchor="middle" fill="var(--text3)" font-size="14">Updates too</text>
           </g>
         </svg>
       </div>
