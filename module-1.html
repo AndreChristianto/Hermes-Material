@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 01: What is Hermes? | Hermes x Sectors</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="module-1.html" class="nav-link active"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="module-2.html" class="nav-link"><span class="nav-num">02</span>Architecture</a>
+      <a href="module-3.html" class="nav-link"><span class="nav-num">03</span>Setup</a>
+      <a href="module-4.html" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="module-5.html" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="module-6.html" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="module-7.html" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="module-8.html" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <div class="page-header-eyebrow">
+      Module 01 <span>/</span> What is Hermes?
+    </div>
+    <h1>What is Hermes?</h1>
+    <p class="page-header-desc">
+      The architectural and behavioral differences between reactive chat interfaces and autonomous AI agents, and where Hermes sits in that landscape.
+    </p>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- OBJECTIVES -->
+  <section class="section">
+    <div class="container">
+      <div class="objectives">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+          <li>Explain the key differences between a chatbot and an AI agent.</li>
+          <li>Describe what makes Hermes different from a conventional static agent.</li>
+          <li>Set realistic expectations about what current AI agent tools can and cannot do.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FROM CHATBOTS TO AGENTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Foundation</div>
+      <h2>From Chatbots to Agents</h2>
+      <p class="section-intro">
+        A chatbot and an agent both accept a message and return a response. What happens in between is the difference.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Chatbot</th>
+            <th>Agent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scope</td>
+            <td>Single conversation</td>
+            <td>A workflow</td>
+          </tr>
+          <tr>
+            <td>Result</td>
+            <td>A message</td>
+            <td>A consequence</td>
+          </tr>
+          <tr>
+            <td>Human input</td>
+            <td>Required at every step</td>
+            <td>Not required</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top:2rem;margin-bottom:1rem;">Three Core Capabilities of an Agent</h3>
+
+      <div class="capability-list">
+        <div class="capability-item">
+          <div class="capability-icon">01</div>
+          <div class="capability-body">
+            <h3>Take Actions</h3>
+            <p>Calls APIs, writes files, sends emails. The response is a change in state, not just words on a screen.</p>
+          </div>
+        </div>
+        <div class="capability-item">
+          <div class="capability-icon">02</div>
+          <div class="capability-body">
+            <h3>Operate on a Schedule</h3>
+            <p>Runs autonomously at set times or on triggers, not just when you open a chat window. The agent acts without being summoned.</p>
+          </div>
+        </div>
+        <div class="capability-item">
+          <div class="capability-icon">03</div>
+          <div class="capability-body">
+            <h3>Maintain Memory</h3>
+            <p>Persists context across sessions. Not stateless. Builds a history that informs future behavior. Knows who you are by the time the second conversation starts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS HERMES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">The Tool</div>
+      <h2>What is Hermes?</h2>
+      <p class="section-intro">
+        Hermes Agent is an open-source AI agent built by Nous Research. Install it as a terminal tool, a desktop app, or a Docker container, all three sharing the same config, skills, and memory. It connects to Telegram, Discord, Slack, WhatsApp, Signal, and Email, and uses MCP servers to reach external tools and data.
+      </p>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.5rem;">
+        What makes it different is a built-in learning loop. It writes its own <strong>skills</strong>, saved procedures derived from experience, on its own or when asked with <code>/learn</code>. It also builds a persistent model of you in MEMORY.md and USER.md.
+      </p>
+      <div class="info-box">
+        <span class="info-box-icon">★</span>
+        <span>The agent you run after three months of daily use is genuinely different from the one you started with. This is the core proposition of Hermes.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYPE VS REALITY -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Honest Assessment</div>
+      <h2>Hype vs Reality</h2>
+      <p class="section-intro">
+        Before we build anything, it's worth being clear about what Hermes is and what it is not.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th>Reality</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cost</td>
+            <td>Hermes is free and open source. Costs come from a VPS (if always-on) and the model API, a DeepSeek key being the cheapest reliable option. Watch unused MCP connections too, check the Context Usage panel rather than guessing.</td>
+          </tr>
+          <tr>
+            <td>Agent limitations</td>
+            <td>Hermes provides the infrastructure, not correct reasoning. Confident answers can still be wrong, verify against the raw Sectors numbers and treat Hermes as a first-pass tool.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WHERE HERMES FITS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Landscape</div>
+      <h2>Where Hermes Fits</h2>
+      <p class="section-intro">
+        Here is how Hermes compares to the tools you are most likely to encounter.
+      </p>
+
+      <div class="tool-compare">
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">n8n</div>
+          <p class="tool-compare-desc">Best for structured, predictable workflows where inputs and outputs are known in advance. Doesn't handle open-ended reasoning.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Zapier</div>
+          <p class="tool-compare-desc">Similar to n8n, accessible linear automations. Not built for flexible natural-language tasks.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">OpenClaw</div>
+          <p class="tool-compare-desc">A self-hosted gateway connecting a language model to messaging channels and community-published ClawHub skills. Excellent for quick deployment and broad channel reach. Less suited to workflows where you specifically want the agent to rewrite its own procedures from experience, that is Hermes's differentiator, not OpenClaw's design goal.</p>
+        </div>
+        <div class="tool-compare-item tool-compare-item--highlight">
+          <div class="tool-compare-name">★ Hermes</div>
+          <p class="tool-compare-desc">Best suited to recurring personal workflows where improvement over time matters. If you send the agent the same type of task regularly, it will get better at it. The longer it runs, the more it knows about you and what you want.</p>
+        </div>
+      </div>
+
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-top:1.25rem;">
+        Already on OpenClaw? <code>hermes claw migrate</code> imports persona, memory, skills, model config, messaging tokens, and MCP servers automatically, previewing changes and backing up first.
+      </p>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div class="container">
+    <nav class="page-nav">
+      <a href="home.html" class="page-nav-link">
+        <span class="page-nav-label">← Back</span>
+        <span class="page-nav-title">Course Home</span>
+      </a>
+      <a href="module-2.html" class="page-nav-link page-nav-link--next">
+        <span class="page-nav-label">Next →</span>
+        <span class="page-nav-title">Module 02: Hermes Architecture</span>
+      </a>
+    </nav>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+  });
+</script>
+</body>
+</html>

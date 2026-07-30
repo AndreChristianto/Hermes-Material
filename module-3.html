@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 03: Setup &amp; Installation | Hermes x Sectors</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="module-1.html" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="module-2.html" class="nav-link"><span class="nav-num">02</span>Architecture</a>
+      <a href="module-3.html" class="nav-link active"><span class="nav-num">03</span>Setup</a>
+      <a href="module-4.html" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="module-5.html" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="module-6.html" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="module-7.html" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="module-8.html" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <div class="page-header-eyebrow">
+      Module 03 <span>/</span> Setup &amp; Installation
+    </div>
+    <h1>Setup &amp; Installation</h1>
+    <p class="page-header-desc">
+      A guided walkthrough covering installation, first-run configuration, model provider setup, and connecting a messaging channel.
+    </p>
+    <div class="page-header-actions">
+      <a href="https://hermes-ai.net/desktop/" target="_blank" rel="noopener" class="btn btn-blue"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Download Hermes Desktop</a>
+      <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="btn btn-blue"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Visit Hermes Docs</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- OBJECTIVES -->
+  <section class="section">
+    <div class="container">
+      <div class="objectives">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+          <li>Install Hermes Desktop and complete the onboarding wizard.</li>
+          <li>Configure SOUL.md with a basic agent identity.</li>
+          <li>Connect a model provider, DeepSeek is the cheapest way in.</li>
+          <li>Pair Telegram by scanning a QR code, and optionally connect Discord.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE INSTALL PATHS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Getting Started</div>
+      <h2>Three Ways to Install</h2>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
+        Config, keys, sessions, skills, and memory are shared across all three, so switching later isn't starting over.
+      </p>
+
+      <div class="tool-compare">
+        <div class="tool-compare-item tool-compare-item--highlight">
+          <div class="tool-compare-name">★ Desktop App</div>
+          <p class="tool-compare-desc">A native chat app for macOS or Windows. Polished UI, no terminal needed. Today's starting point on those two.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Terminal</div>
+          <p class="tool-compare-desc">Direct, non-Docker install on your own machine. Same core as the Desktop App, just a CLI instead of a UI. The path for Linux, no desktop build exists yet.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">VPS + Docker</div>
+          <p class="tool-compare-desc">Runs as a Docker container on a remote server, online 24/7 independent of your machine. The path to always-on workflows, covered in Module 07.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALLING HERMES (DESKTOP APP) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Installation</div>
+      <h2>Installing Hermes (Desktop App)</h2>
+      <p class="section-intro">
+        On macOS or Windows, download the native app from hermes-agent.nousresearch.com and install it like any other app. First launch drops you straight into the onboarding wizard, covering inference provider, messaging, and tools in one pass.
+      </p>
+
+      <details class="detail-aside">
+        <summary>On Linux, or prefer the CLI anyway?</summary>
+        <div class="detail-aside-content">
+          Run <code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | sh</code>, then <code>hermes setup</code>. Same wizard, same result, just no window, and it writes into the identical <code>~/.hermes/</code> home folder.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- FIRST RUN AND SOUL.MD -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">First Run</div>
+      <h2>First Run and SOUL.md</h2>
+      <p class="section-intro">
+        The setup wizard creates your <code>~/.hermes/</code> directory with a default SOUL.md.
+      </p>
+
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
+        Open <code>~/.hermes/SOUL.md</code> (or <code>hermes config edit</code>). The default is generic, change it to something focused. A starting point for this course:
+      </p>
+
+      <div class="code-block">
+        <div class="code-block-label">~/.hermes/SOUL.md: Financial Research Example</div>
+        <pre>You are a financial research assistant focused on Indonesian equities.
+
+Before answering any question about a specific stock or sector, always retrieve
+live data from Sectors. Do not rely on training data for price, ratio, or
+earnings information.
+
+Format numbers in IDR where relevant. Keep responses concise unless the user
+asks for a full breakdown. Always cite which tool you used to retrieve data.
+
+Before executing any write operation (files, emails, calendar), confirm with
+the user first.</pre>
+      </div>
+
+      <div class="info-box">
+        <span class="info-box-icon">↻</span>
+        <span>Read at the start of every conversation. Changes take effect immediately, no restart needed.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL PROVIDER -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Model Provider</div>
+      <h2>Connecting a Model Provider</h2>
+      <p class="section-intro">
+        During first run, the wizard asks for a provider. A few paths work for this course, pick whichever fits your budget.
+      </p>
+
+      <div class="tool-compare">
+        <div class="tool-compare-item tool-compare-item--highlight">
+          <div class="tool-compare-name">★ DeepSeek</div>
+          <p class="tool-compare-desc">Grab a key from platform.deepseek.com and paste it in during setup. Chosen here for cheap experimentation, tool calling works well and the cost stays low for a full day of poking around.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Nous Portal</div>
+          <p class="tool-compare-desc">One OAuth login (<code>hermes setup --portal</code>) replaces separate OpenRouter, Anthropic, and OpenAI keys, 300+ models under one subscription. Comes with free credits, but activating the account requires a credit card on file.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Groq or Gemini</div>
+          <p class="tool-compare-desc">Both offer a genuinely free tier, no card needed. Create a key at <a href="https://console.groq.com/" target="_blank" rel="noopener">console.groq.com</a> for Groq, or <a href="https://aistudio.google.com/" target="_blank" rel="noopener">aistudio.google.com</a> for Gemini.</p>
+        </div>
+        <div class="tool-compare-item">
+          <div class="tool-compare-name">Another Direct API Key</div>
+          <p class="tool-compare-desc">OpenAI supports either OAuth login or an API key. Anthropic supports API key only, its OAuth login doesn't currently work with Hermes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECTING TELEGRAM -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Messaging Channel</div>
+      <h2>Connecting Telegram</h2>
+      <p class="section-intro">
+        Hermes talks to you through a messaging platform. From the Desktop App, Telegram is a QR scan away.
+      </p>
+
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-line">
+            <div class="install-step-dot">1</div>
+            <div class="install-step-connector"></div>
+          </div>
+          <div class="install-step-body">
+            <div class="install-step-title">Open Messaging → Telegram</div>
+            <p class="install-step-desc">In the Desktop App, go to Capabilities → Messaging → Telegram.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="install-step-line">
+            <div class="install-step-dot">2</div>
+            <div class="install-step-connector"></div>
+          </div>
+          <div class="install-step-body">
+            <div class="install-step-title">Scan the QR code</div>
+            <p class="install-step-desc">The page shows a QR code. Open Telegram on your phone and scan it, following the prompts it gives you.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="install-step-line">
+            <div class="install-step-dot">3</div>
+            <div class="install-step-connector"></div>
+          </div>
+          <div class="install-step-body">
+            <div class="install-step-title">Restart the gateway</div>
+            <p class="install-step-desc">Config changes need a restart to apply. Use the app's restart control here, then confirm the "restart needed" badge clears before testing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <span class="info-box-icon">→</span>
+        <span>DM your bot once the restart is done.</span>
+      </div>
+
+      <details class="detail-aside">
+        <summary>Setting this up from the terminal or a VPS instead?</summary>
+        <div class="detail-aside-content">
+          The QR flow is specific to the Desktop App. From the terminal or a VPS, you need a bot token from <code>@BotFather</code> and your Telegram user ID from <code>@userinfobot</code>, then <code>hermes gateway setup</code>.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONNECTING DISCORD -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Messaging Channel</div>
+      <h2>Connecting Discord (Optional)</h2>
+      <p class="section-intro">
+        A few more steps than Telegram, worth it for the gotchas below, each of which has caused a bot to go silently unresponsive.
+      </p>
+
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-line">
+            <div class="install-step-dot">1</div>
+            <div class="install-step-connector"></div>
+          </div>
+          <div class="install-step-body">
+            <div class="install-step-title">Create the application and bot</div>
+            <p class="install-step-desc">In the <a href="https://discord.com/developers/applications" target="_blank" rel="noopener">Discord Developer Portal</a>, create an application. Under Bot → Privileged Gateway Intents, enable <strong>Message Content Intent</strong>. Copy the bot token.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="install-step-line">
+            <div class="install-step-dot">2</div>
+            <div class="install-step-connector"></div>
+          </div>
+          <div class="install-step-body">
+            <div class="install-step-title">Invite it to your server</div>
+            <p class="install-step-desc">Generate an invite URL from the Installation tab (<code>bot</code> scope, plus Send Messages, Read Message History, and <strong>View Channels</strong>, easy to miss). Open the URL, add the bot.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="install-step-line">
+            <div class="install-step-dot">3</div>
+            <div class="install-step-connector"></div>
+          </div>
+          <div class="install-step-body">
+            <div class="install-step-title">Configure Hermes</div>
+            <p class="install-step-desc">Capabilities → Messaging → Discord in the Desktop App, paste the bot token, Save. Get your own user ID via Developer Mode, right-click your name, Copy User ID.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="notice notice--amber" style="margin-top:1.25rem;">
+        <span class="notice-icon">!</span>
+        <div>
+          <strong>Bot online but silent? Check Hermes's own allowlist first.</strong> Hermes drops every incoming message by default until an allowlist exists, even with every Discord permission correct. Fix: add <code>DISCORD_ALLOW_ALL_USERS=true</code> to the profile's <code>.env</code> for testing (or scope it with <code>DISCORD_ALLOWED_CHANNELS</code> / <code>_USERS</code> / <code>_ROLES</code>), then restart. This is the most common reason a correctly-configured bot looks broken.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK REFERENCE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Quick Reference</div>
+      <h2>Full Setup Sequence</h2>
+      <p class="section-intro">The complete flow from zero to a running Hermes agent.</p>
+
+      <div class="notice" style="margin-bottom:1.25rem;">
+        <div>
+          <ul class="step-list">
+            <li><span class="step-n">01</span>Download and install Hermes Desktop, launch it</li>
+            <li><span class="step-n">02</span>Complete the onboarding wizard, paste your DeepSeek API key when prompted</li>
+            <li><span class="step-n">03</span>Edit <code>~/.hermes/SOUL.md</code> with a focused identity</li>
+            <li><span class="step-n">04</span>Capabilities → Messaging → Telegram, scan the QR code (and Discord, if wanted)</li>
+            <li><span class="step-n">05</span>Restart the gateway to apply changes</li>
+            <li><span class="step-n">06</span>DM your bot to confirm it responds, then head to Module 04 to connect Sectors</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div class="container">
+    <nav class="page-nav">
+      <a href="module-2.html" class="page-nav-link">
+        <span class="page-nav-label">← Previous</span>
+        <span class="page-nav-title">Module 02: Hermes Architecture</span>
+      </a>
+      <a href="module-4.html" class="page-nav-link page-nav-link--next">
+        <span class="page-nav-label">Next →</span>
+        <span class="page-nav-title">Module 04: Sectors MCP</span>
+      </a>
+    </nav>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 06: Automation &amp; Cron | Hermes x Sectors</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="module-1.html" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="module-2.html" class="nav-link"><span class="nav-num">02</span>Architecture</a>
+      <a href="module-3.html" class="nav-link"><span class="nav-num">03</span>Setup</a>
+      <a href="module-4.html" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="module-5.html" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="module-6.html" class="nav-link active"><span class="nav-num">06</span>Automation</a>
+      <a href="module-7.html" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="module-8.html" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <div class="page-header-eyebrow">
+      Module 06 <span>/</span> Automation &amp; Cron
+    </div>
+    <h1>Automation &amp; Cron</h1>
+    <p class="page-header-desc">
+      Using Hermes's built-in cron to run financial workflows on a schedule, no external tools required.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <!-- OBJECTIVES -->
+  <section class="section">
+    <div class="container">
+      <div class="objectives">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+          <li>Set up a scheduled task using Hermes's built-in cron.</li>
+          <li>Design at least one practical recurring Sectors workflow.</li>
+          <li>Write self-contained prompts that survive a fresh, memory-less cron session.</li>
+          <li>Understand what running Hermes on a VPS enables vs local-only operation.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SCHEDULING MATTERS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">The Case for Automation</div>
+      <h2>Why Scheduling Matters</h2>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
+        A tool you only open when you remember is still reactive. Scheduling makes Hermes genuinely autonomous, running the workflow and delivering the result without you starting anything. It has a built-in cron system, no external scheduler needed, that runs as long as the gateway is up.
+      </p>
+    </div>
+  </section>
+
+  <!-- CRON BASICS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Scheduling</div>
+      <h2>How Scheduling Works</h2>
+      <p class="section-intro">
+        Describe the schedule in plain language when you set up the task, "every weekday at 7am" or "every Friday at 4:30pm" works fine. No cron syntax to write by hand.
+      </p>
+
+      <h3 style="margin-top:2rem;margin-bottom:1rem;">The Golden Rule for Scheduled Prompts</h3>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;">
+        Cron jobs run in fresh sessions with no memory of the chat that set them up. Every prompt must be self-contained, no "do the usual thing," spell out what to pull, from where, and where to send it.
+      </p>
+
+      <div class="info-box" style="margin-top:1rem;">
+        <span class="info-box-icon">→</span>
+        <span>For monitoring jobs that shouldn't spam you, use the <code>[SILENT]</code> convention: Hermes responds with just that token when nothing's worth reporting.</span>
+      </div>
+
+      <div class="info-box" style="margin-top:0.75rem;">
+        <span class="info-box-icon">⚙</span>
+        <div>
+          If a message is fully determined by a script, Hermes can run it in "no-agent mode":
+          <ul class="content-list" style="margin:0.5rem 0 0;">
+            <li>Stdout delivered directly</li>
+            <li>Zero model calls</li>
+            <li>Zero token spend</li>
+          </ul>
+          <span style="display:block;margin-top:0.5rem;">No need to request this, plain language like "ping me if RAM is over 85%" is enough.</span>
+        </div>
+      </div>
+
+      <div class="notice notice--amber" style="margin-top:1rem;">
+        <span class="notice-icon">!</span>
+        <span>Cron jobs run with the <code>cronjob</code>, <code>messaging</code>, and <code>clarify</code> toolsets disabled, so skills needing interactive confirmation won't work headless. If a job silently fails, check the gateway is running and the timezone is right first, the two most common causes.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL EXAMPLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">A Real Example</div>
+      <h2>Not Every Job Needs to Be a Hermes Prompt</h2>
+      <p class="section-intro">
+        A standalone script on a VPS, triggered by plain OS-level cron, works well for deterministic jobs, fetch data, summarize cheaply, write a file, no reasoning needed. A daily AI news digest is a good example: a script pulls top Hacker News stories, summarizes them with a free-tier API, and writes the result straight to a file, all outside Hermes entirely.
+      </p>
+      <div class="code-block">
+        <div class="code-block-label">Cron entry</div>
+        <pre>0 7 * * * GEMINI_API_KEY=your-key VAULT_DIR=/root/vault python3 /root/scripts/news_digest.py >> /root/news_digest.log 2>&1</pre>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;">
+        Runs daily at 7 AM server time. Check the VPS's timezone first with <code>timedatectl</code>, cron uses local system time. Save Hermes's own scheduling for jobs that genuinely need judgment, not just a fetch-and-format loop.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRACTICAL SCENARIOS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Workflows</div>
+      <h2>Practical Scenarios with Sectors</h2>
+      <p class="section-intro">
+        Three recurring workflows that provide real daily value. Each prompt is self-contained, per the golden rule above.
+      </p>
+
+      <div class="competency-list">
+        <div class="competency-item fade-up">
+          <span class="competency-num">01</span>
+          <div class="competency-text">
+            <strong>Morning Briefing (Weekdays, 7 AM)</strong>
+            Pull yesterday's top 3 IDX movers. For each, include the percentage change and a one-line note from Sectors news. Deliver to Telegram before you start your day.
+            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+              <div class="code-block-label">Prompt</div>
+              <pre>Pull the top 3 IDX stock movers from yesterday. For each, show the ticker, percentage change, and a one-line summary of any Sectors news. Send to Telegram.</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="competency-item fade-up">
+          <span class="competency-num">02</span>
+          <div class="competency-text">
+            <strong>Weekly Portfolio Snapshot (Fridays, 4 PM)</strong>
+            Compare your watchlist stocks against their 30-day performance. Summarize in a table and send to Telegram ahead of the weekend.
+            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+              <div class="code-block-label">Prompt</div>
+              <pre>Compare BBCA, BMRI, and TLKM's current price against 30 days ago. Show the change as a percentage. Format as a table and send to Telegram.</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="competency-item fade-up">
+          <span class="competency-num">03</span>
+          <div class="competency-text">
+            <strong>Price Threshold Alert (Hourly)</strong>
+            Hermes checks BBCA's price every hour. If it drops below a threshold you define, send an immediate Telegram message.
+            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+              <div class="code-block-label">Prompt</div>
+              <pre>Check BBCA's current price. If it is below 9500 IDR, send a Telegram message: "Alert: BBCA has dropped below 9500. Current price: [price]."</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RUNNING ON VPS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Always-On Operation</div>
+      <h2>Running on a VPS</h2>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
+        Local means the gateway runs only while your machine is on, close your laptop and the morning briefing doesn't run. A VPS fixes that. Setup mirrors local (SOUL.md, Sectors MCP, messaging), but Hermes runs as a Docker container with a restart policy so it survives reboots:
+      </p>
+      <div class="code-block">
+        <div class="code-block-label">Persistent gateway on a VPS</div>
+        <pre>docker run -d --name hermes --restart unless-stopped -v ~/.hermes:/opt/data -p 8642:8642 nousresearch/hermes-agent gateway run</pre>
+      </div>
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.75;">
+        Run setup over SSH directly, not a browser-based VPS console, some corrupt special characters like <code>:</code> and <code>@</code> in tokens and keys.
+      </p>
+    </div>
+  </section>
+
+  <!-- SAFETY NOTE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Safety</div>
+      <h2>A Note on Safety with Scheduled Tasks</h2>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
+        Command approval prompts interrupt scheduled tasks by default. For the 7 AM briefing to run unattended, the workflow needs to stick to read and messaging operations only, nothing that triggers approval.
+      </p>
+      <div class="notice notice--amber">
+        <span class="notice-icon">★</span>
+        <div>
+          Configure only <strong>read</strong> and <strong>messaging</strong> as trusted for scheduled workflows, never write or delete. The briefing runs unattended, destructive actions still need you present.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div class="container">
+    <nav class="page-nav">
+      <a href="module-5.html" class="page-nav-link">
+        <span class="page-nav-label">← Previous</span>
+        <span class="page-nav-title">Module 05: Memory &amp; Skills</span>
+      </a>
+      <a href="module-7.html" class="page-nav-link page-nav-link--next">
+        <span class="page-nav-label">Next →</span>
+        <span class="page-nav-title">Module 07: Multi-Agent Orchestration</span>
+      </a>
+    </nav>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+  });
+</script>
+</body>
+</html>

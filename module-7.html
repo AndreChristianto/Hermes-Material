@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 07: Multi-Agent Orchestration | Hermes x Sectors</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="module-1.html" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="module-2.html" class="nav-link"><span class="nav-num">02</span>Architecture</a>
+      <a href="module-3.html" class="nav-link"><span class="nav-num">03</span>Setup</a>
+      <a href="module-4.html" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="module-5.html" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="module-6.html" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="module-7.html" class="nav-link active"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="module-8.html" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <div class="page-header-eyebrow">
+      Module 07 <span>/</span> Multi-Agent Orchestration
+    </div>
+    <h1>Multi-Agent Orchestration</h1>
+    <p class="page-header-desc">
+      When one agent isn't the right shape for the job, Hermes's Kanban board lets you fan a goal out across specialized profiles that work in parallel.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <!-- OBJECTIVES -->
+  <section class="section">
+    <div class="container">
+      <div class="objectives">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+          <li>Know when a quick delegated call is enough, and when you need the Kanban board instead.</li>
+          <li>Understand Auto vs Manual orchestration and what the decomposer actually does.</li>
+          <li>Walk through a working multi-agent research pipeline, profiles, models, and the prompt that reliably fans it out.</li>
+          <li>Find and read the output of a running or completed task.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY MULTI-AGENT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">The Case for Specialization</div>
+      <h2>Why Split Work Across Agents</h2>
+      <p class="section-intro">
+        One agent trying to hold several personas or modes at once tends to drift. Splitting work across narrowly scoped profiles fixes that, and brings a few other benefits along for free.
+      </p>
+
+      <div class="competency-list">
+        <div class="competency-item fade-up">
+          <span class="competency-num">01</span>
+          <p class="competency-text"><strong>Focus.</strong> A profile scoped to one job, facts only, no speculation, stays on task better than one agent juggling several roles.</p>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">02</span>
+          <p class="competency-text"><strong>Parallelism.</strong> Two profiles researching independently run at the same time. A single agent is architecturally sequential, one reasoning stream at a time.</p>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">03</span>
+          <p class="competency-text"><strong>Fault isolation.</strong> If one worker crashes, only its task blocks, not the whole pipeline.</p>
+        </div>
+        <div class="competency-item fade-up">
+          <span class="competency-num">04</span>
+          <p class="competency-text"><strong>Matching model to task.</strong> A cheap, fast model for a simple judgment call, a stronger one only where it's actually needed, rather than paying premium rates for every step.</p>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">$</span>
+        <span>Cost efficiency falls out of specialization, it isn't the main reason to split work, but it's real. MCP connections and toolsets are scoped per profile too, so a narrowly configured worker also carries a smaller context footprint than one profile trying to do everything.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELEGATE VS KANBAN -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Two Mechanisms</div>
+      <h2>delegate_task vs the Kanban Board</h2>
+      <p class="section-intro">
+        Hermes gives you two different ways to hand work to another agent. They solve different problems.
+      </p>
+
+      <table class="simple-table">
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>delegate_task</th>
+            <th>Kanban board</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Shape</td>
+            <td>A function call</td>
+            <td>A work queue</td>
+          </tr>
+          <tr>
+            <td>Blocking</td>
+            <td>Parent blocks until the subagent returns</td>
+            <td>Fire-and-forget</td>
+          </tr>
+          <tr>
+            <td>Identity</td>
+            <td>Anonymous, in-memory subagent</td>
+            <td>Named profile, its own OS process</td>
+          </tr>
+          <tr>
+            <td>Durability</td>
+            <td>Result lost once the conversation compresses</td>
+            <td>Resumable after a crash, full audit trail</td>
+          </tr>
+          <tr>
+            <td>Best for</td>
+            <td>A quick reasoning answer inside one conversation</td>
+            <td>Work that crosses agent boundaries or needs a human in the loop</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;">
+        The Kanban board is a durable task board, backed by a single SQLite database and shared across all profiles on a machine. Every task is a row, every handoff is a comment anyone can read.
+      </p>
+    </div>
+  </section>
+
+  <!-- AUTO VS MANUAL -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Orchestration Mode</div>
+      <h2>Auto vs Manual</h2>
+      <p class="section-intro">
+        This setting answers one question: does the board split work across agents on its own, or do you have to do it yourself?
+      </p>
+
+      <div class="topic-item">
+        <span class="topic-num">01</span>
+        <div class="topic-content">
+          <h3>Auto (default)</h3>
+          <p>Drop a task into Triage and the dispatcher's decomposer reads your profiles' descriptions and fans the goal into a task graph on its own. The "drop a goal, walk away" flow.</p>
+        </div>
+      </div>
+
+      <div class="topic-item">
+        <span class="topic-num">02</span>
+        <div class="topic-content">
+          <h3>Manual</h3>
+          <p>Tasks sit in Triage until you click Decompose on the card, or run <code>hermes kanban decompose &lt;id&gt;</code>.</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <span class="info-box-icon">→</span>
+        <span>Routing quality in Auto mode depends on each profile having a description of what it's good at. Fill these in, or use <code>hermes profile describe &lt;name&gt; --auto</code> to generate one from its SOUL.md, rather than leaving them blank.</span>
+      </div>
+
+      <div class="notice notice--amber" style="margin-top:1rem;">
+        <span class="notice-icon">!</span>
+        <div>
+          A vague, single-threaded goal often decomposes into just one worker. To force real parallel behavior, be explicit:
+          <ul class="content-list" style="margin:0.5rem 0 0;">
+            <li>Ask for multiple independent subtasks</li>
+            <li>Ask for parallel work</li>
+            <li>Ask for different angles</li>
+            <li>Ask for a final synthesis step</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE WORKING DEMO -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Worked Example</div>
+      <h2>A Working Research Pipeline</h2>
+      <p class="section-intro">
+        One goal fans out into two parallel research tracks, which converge into a synthesized answer, then get judged for completeness.
+      </p>
+
+      <div class="diagram-wrap">
+        <svg viewBox="-170 0 950 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Goal enters agent-orchestrator, which fans out to agent-literal and agent-creative in parallel, both feeding agent-summarizer, which returns to the orchestrator for a completeness check">
+          <defs>
+            <marker id="pipe-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--text3)"></path>
+            </marker>
+          </defs>
+          <g font-family="var(--mono)" font-size="12">
+            <rect x="290" y="10" width="200" height="55" rx="6" fill="var(--bg2)" stroke="var(--accent)"></rect>
+            <text x="390" y="33" text-anchor="middle" fill="var(--accent)" font-weight="600">goal</text>
+            <text x="390" y="50" text-anchor="middle" fill="var(--text3)" font-size="10">dropped into Triage</text>
+
+            <line x1="390" y1="65" x2="390" y2="98" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#pipe-arrow)"></line>
+
+            <rect x="270" y="100" width="240" height="55" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="390" y="123" text-anchor="middle" fill="var(--text)" font-weight="600">agent-orchestrator</text>
+            <text x="390" y="140" text-anchor="middle" fill="var(--text3)" font-size="10">owns root task, fans out</text>
+
+            <line x1="330" y1="155" x2="170" y2="188" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#pipe-arrow)"></line>
+            <line x1="450" y1="155" x2="610" y2="188" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#pipe-arrow)"></line>
+
+            <rect x="50" y="190" width="240" height="55" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="170" y="213" text-anchor="middle" fill="var(--text)" font-weight="600">agent-literal</text>
+            <text x="170" y="230" text-anchor="middle" fill="var(--text3)" font-size="10">factual research track</text>
+
+            <rect x="490" y="190" width="240" height="55" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="610" y="213" text-anchor="middle" fill="var(--text)" font-weight="600">agent-creative</text>
+            <text x="610" y="230" text-anchor="middle" fill="var(--text3)" font-size="10">perspective research track</text>
+
+            <line x1="220" y1="245" x2="330" y2="283" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#pipe-arrow)"></line>
+            <line x1="560" y1="245" x2="450" y2="283" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#pipe-arrow)"></line>
+
+            <rect x="230" y="285" width="320" height="55" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="390" y="308" text-anchor="middle" fill="var(--text)" font-weight="600">agent-summarizer</text>
+            <text x="390" y="325" text-anchor="middle" fill="var(--text3)" font-size="10">synthesizes both into one brief</text>
+
+            <path d="M 228 300 C -60 300, -60 128, 268 128" fill="none" stroke="var(--text3)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#pipe-arrow)"></path>
+            <text x="-115" y="210" text-anchor="middle" fill="var(--text3)" font-size="9.5">judges</text>
+            <text x="-115" y="222" text-anchor="middle" fill="var(--text3)" font-size="9.5">completeness</text>
+          </g>
+        </svg>
+      </div>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th>Model</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>agent-literal</td>
+            <td>gpt-5.4-mini</td>
+            <td>Verified facts and documented detail only, no speculation.</td>
+          </tr>
+          <tr>
+            <td>agent-creative</td>
+            <td>gpt-5.4-mini</td>
+            <td>Differing expert opinions and open debates, actively seeks disagreement.</td>
+          </tr>
+          <tr>
+            <td>agent-summarizer</td>
+            <td>gpt-5.4</td>
+            <td>Reconciles overlaps, flags contradictions instead of picking a side.</td>
+          </tr>
+          <tr>
+            <td>agent-orchestrator</td>
+            <td>gpt-5.4-nano</td>
+            <td>Judges whether the combined output actually answers the goal. Nano tier, this is a simple judgment call, not deep reasoning.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-top:1rem;">
+        In the Kanban dashboard's Orchestration settings: Orchestrator Profile set to <code>agent-orchestrator</code>, Auto-decompose on, so a task dropped in Triage fans out automatically.
+      </p>
+
+      <details class="detail-aside">
+        <summary>Config gotcha: decomposer defaulting to no key</summary>
+        <div class="detail-aside-content">
+          Auxiliary decomposer and triage helpers don't inherit the main model by default. Without an explicit <code>auxiliary.kanban_decomposer.provider: main</code> in <code>config.yaml</code>, they can default to a provider with no key configured. Pin <code>model.default</code> explicitly per profile too, and verify with <code>hermes -p &lt;profile&gt; doctor</code> rather than trusting the dashboard after rapid edits.
+        </div>
+      </details>
+
+      <h3 style="margin-top:1.75rem;margin-bottom:0.75rem;">A prompt that reliably forces the split</h3>
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-bottom:0.75rem;">
+        Paste into the Triage task's Title field, there's no separate body box:
+      </p>
+      <div class="code-block code-block--prompt">
+        <div class="code-block-label">Prompt</div>
+        <pre>Research a topic using two independent tracks, then synthesize.
+
+1. Factual track:
+   - Verified facts, documented technical details, definitions
+   - Confirmed capabilities only, no speculation
+   - If something is disputed or unconfirmed, say so plainly
+
+2. Perspective track:
+   - Differing expert opinions, open debates, controversies
+   - Speculative angles, actively seek disagreement
+
+Once both tracks are complete, synthesize into one cohesive brief:
+   - Reconcile overlaps
+   - Flag direct contradictions explicitly
+   - Produce a single neutral-toned summary of what's known versus what's debated</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDING OUTPUT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Reading Results</div>
+      <h2>Finding Task Output</h2>
+      <p class="section-intro">From the dashboard or the CLI, take your pick.</p>
+
+      <div class="code-block">
+        <div class="code-block-label">CLI</div>
+        <pre>hermes kanban show &lt;task_id&gt;    # status, assignee, diagnostics, latest_summary
+hermes kanban tail &lt;task_id&gt;    # live progress stream
+hermes kanban log &lt;task_id&gt;     # raw worker log, full error traces</pre>
+      </div>
+
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;">
+        In the dashboard, click a card for the same information rendered live, editable title, assignee, and priority, a dependency editor, a Result section once complete, and the comment thread. The board updates over WebSocket, no refresh needed. If a task looks stuck, click Nudge dispatcher instead of waiting for the next tick.
+      </p>
+
+      <div class="notice notice--amber" style="margin-top:1rem;">
+        <span class="notice-icon">!</span>
+        <span>A card marked "blocked" with "Agent crash x2" means the worker process exited abnormally twice, hitting its failure limit. Check <code>hermes kanban log &lt;task_id&gt;</code> for what it said right before dying, in practice this is usually a normal API error (auth, bad parameter, rate limit), not a mysterious crash.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div class="container">
+    <nav class="page-nav">
+      <a href="module-6.html" class="page-nav-link">
+        <span class="page-nav-label">← Previous</span>
+        <span class="page-nav-title">Module 06: Automation &amp; Cron</span>
+      </a>
+      <a href="module-8.html" class="page-nav-link page-nav-link--next">
+        <span class="page-nav-label">Next →</span>
+        <span class="page-nav-title">Module 08: Level Up</span>
+      </a>
+    </nav>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+  });
+</script>
+</body>
+</html>

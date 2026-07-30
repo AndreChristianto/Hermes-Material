@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hermes x Sectors, Workshop Home</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link active">Home</a>
+      <a href="module-1.html" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="module-2.html" class="nav-link"><span class="nav-num">02</span>Architecture</a>
+      <a href="module-3.html" class="nav-link"><span class="nav-num">03</span>Setup</a>
+      <a href="module-4.html" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="module-5.html" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="module-6.html" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="module-7.html" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="module-8.html" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-up">
+      <span class="hero-tag">Workshop</span>
+    </div>
+    <h1 class="fade-up">Building a Financial AI Agent<br>with <em>Hermes</em></h1>
+    <p class="hero-subtitle fade-up">
+      A hands-on introduction to self-improving AI agents and live financial data. Build an agent that queries Indonesian stock market data and gets better the more you use it.
+    </p>
+    <p style="font-size:0.85rem;color:var(--text2);margin-top:0.5rem;text-align:center;">
+      Docs and downloads: <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">hermes-agent.nousresearch.com</a> and <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">github.com/NousResearch/hermes-agent</a>.
+    </p>
+    <div class="hero-actions fade-up">
+      <a href="module-1.html" class="btn btn-gold">Start Module 01 →</a>
+      <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" class="btn btn-outline"><svg class="btn-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Hermes Docs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COURSE OVERVIEW
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Overview</div>
+    <h2>What This Course Is</h2>
+    <p class="section-intro">
+      Hermes Agent is an open-source AI agent from Nous Research that learns from experience. It writes its own skills, revises them when it finds a better approach, and keeps a persistent record of your preferences. Connected to the Sectors API, it becomes a financial assistant that improves at answering your questions over time.
+    </p>
+    <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;">
+      By the end, you'll have a working Hermes instance connected to a messaging platform and live market data, plus a scheduled financial workflow running on its own.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     LEARNING PATH TABLE
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Learning Path</div>
+    <h2>All 8 Modules</h2>
+    <p class="section-intro">From foundations to a fully running, scheduled financial agent.</p>
+    <table class="lp-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Module</th>
+          <th>Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td><a href="module-1.html">What is Hermes?</a></td>
+          <td>Agents vs chatbots, honest expectations</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td><a href="module-2.html">Hermes Architecture</a></td>
+          <td>Self-improvement loop, memory files, security</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td><a href="module-3.html">Setup &amp; Installation</a></td>
+          <td>Install, SOUL.md, Nous Portal, Telegram &amp; Discord</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td><a href="module-4.html">Sectors MCP</a></td>
+          <td>API key, MCP connection, first query</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td><a href="module-5.html">Memory &amp; Skills</a></td>
+          <td>SOUL.md, MEMORY.md, USER.md, watching a skill get created</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td><a href="module-6.html">Automation &amp; Cron</a></td>
+          <td>Cron workflows, self-contained prompts, VPS</td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td><a href="module-7.html">Multi-Agent Orchestration</a></td>
+          <td>Kanban board, delegation, the working demo pipeline</td>
+        </tr>
+        <tr>
+          <td>08</td>
+          <td><a href="module-8.html">Level Up</a></td>
+          <td>SOUL.md tuning, skill curation, OpenClaw migration</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODULE GRID
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Modules</div>
+    <h2>Jump to a Module</h2>
+    <div class="module-grid">
+      <a href="module-1.html" class="module-card fade-up">
+        <div class="module-card-num">01</div>
+        <div class="module-card-title">What is Hermes?</div>
+        <div class="module-card-desc">The line between a chatbot and an agent, and where Hermes sits.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+      <a href="module-2.html" class="module-card fade-up">
+        <div class="module-card-num">02</div>
+        <div class="module-card-title">Hermes Architecture</div>
+        <div class="module-card-desc">The self-improvement loop, memory files, and security model.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+      <a href="module-3.html" class="module-card fade-up">
+        <div class="module-card-num">03</div>
+        <div class="module-card-title">Setup &amp; Installation</div>
+        <div class="module-card-desc">Install, first run, SOUL.md, Nous Portal, Telegram and Discord.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+      <a href="module-4.html" class="module-card fade-up">
+        <div class="module-card-num">04</div>
+        <div class="module-card-title">Sectors MCP Integration</div>
+        <div class="module-card-desc">Connect live Indonesian market data to your agent.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+      <a href="module-5.html" class="module-card fade-up">
+        <div class="module-card-num">05</div>
+        <div class="module-card-title">Memory &amp; Skills</div>
+        <div class="module-card-desc">SOUL.md, MEMORY.md, USER.md, and watching a skill get created live.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+      <a href="module-6.html" class="module-card fade-up">
+        <div class="module-card-num">06</div>
+        <div class="module-card-title">Automation &amp; Cron</div>
+        <div class="module-card-desc">Hermes's built-in cron, recurring workflows, VPS deployment.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+      <a href="module-7.html" class="module-card fade-up">
+        <div class="module-card-num">07</div>
+        <div class="module-card-title">Multi-Agent Orchestration</div>
+        <div class="module-card-desc">The Kanban board, delegation, and a working multi-agent research pipeline.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+      <a href="module-8.html" class="module-card fade-up">
+        <div class="module-card-num">08</div>
+        <div class="module-card-title">Level Up Your Agent</div>
+        <div class="module-card-desc">SOUL.md refinement, skill curation, deployment options.</div>
+        <span class="module-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHAT YOU WILL LEARN
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Outcomes</div>
+    <h2>What You Will Learn</h2>
+    <p class="section-intro">By the end of this workshop you will be able to:</p>
+    <div class="competency-list">
+      <div class="competency-item fade-up">
+        <span class="competency-num">01</span>
+        <p class="competency-text">Explain a chatbot vs a self-improving agent to a non-technical colleague.</p>
+      </div>
+      <div class="competency-item fade-up">
+        <span class="competency-num">02</span>
+        <p class="competency-text">Install Hermes and connect it to a model provider and a messaging channel.</p>
+      </div>
+      <div class="competency-item fade-up">
+        <span class="competency-num">03</span>
+        <p class="competency-text">Connect Sectors and retrieve live Indonesian stock data through natural language.</p>
+      </div>
+      <div class="competency-item fade-up">
+        <span class="competency-num">04</span>
+        <p class="competency-text">Understand how Hermes writes and refines skills, and how to curate them.</p>
+      </div>
+      <div class="competency-item fade-up">
+        <span class="competency-num">05</span>
+        <p class="competency-text">Schedule recurring financial workflows, briefings, snapshots, alerts, that run on their own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+  });
+</script>
+</body>
+</html>

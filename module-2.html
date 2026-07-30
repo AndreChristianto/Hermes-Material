@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 02: Hermes Architecture | Hermes x Sectors</title>
+  <script>
+    (function(){
+      const t = localStorage.getItem('hermes-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand">
+      <div class="nav-brand-icon">H</div>
+      <span class="nav-brand-text">Hermes x Sectors</span>
+    </a>
+    <div class="nav-links">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="module-1.html" class="nav-link"><span class="nav-num">01</span>What is Hermes?</a>
+      <a href="module-2.html" class="nav-link active"><span class="nav-num">02</span>Architecture</a>
+      <a href="module-3.html" class="nav-link"><span class="nav-num">03</span>Setup</a>
+      <a href="module-4.html" class="nav-link"><span class="nav-num">04</span>Sectors MCP</a>
+      <a href="module-5.html" class="nav-link"><span class="nav-num">05</span>Memory &amp; Skills</a>
+      <a href="module-6.html" class="nav-link"><span class="nav-num">06</span>Automation</a>
+      <a href="module-7.html" class="nav-link"><span class="nav-num">07</span>Multi-Agent</a>
+      <a href="module-8.html" class="nav-link"><span class="nav-num">08</span>Level Up</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container page-header-inner">
+    <div class="page-header-eyebrow">
+      Module 02 <span>/</span> Hermes Architecture
+    </div>
+    <h1>Hermes Architecture</h1>
+    <p class="page-header-desc">
+      How Hermes is structured, what makes it self-improving, and why it is the safer but less flexible choice compared to OpenClaw.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <!-- OBJECTIVES -->
+  <section class="section">
+    <div class="container">
+      <div class="objectives">
+        <div class="objectives-title">Learning Objectives</div>
+        <ul>
+          <li>Describe the self-improvement loop and how skills are created automatically.</li>
+          <li>Name the three memory files and explain what each stores.</li>
+          <li>Explain Hermes's security model and why command approval matters.</li>
+          <li>Articulate the key trade-offs between Hermes and OpenClaw.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERMES AND OPENCLAW: MORE ALIKE THAN DIFFERENT -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Context</div>
+      <h2>Hermes and OpenClaw: More Alike Than Different</h2>
+      <p class="section-intro">
+        Both let you run your own AI agent instead of renting one from a big company. You install it yourself, it's free, and it talks to you through apps you already use, like Telegram or Discord.
+      </p>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1rem;">
+        Already using OpenClaw? <code>hermes claw migrate</code> brings your existing setup across automatically, showing you what will change before it touches anything.
+      </p>
+    </div>
+  </section>
+
+  <!-- SELF-IMPROVEMENT LOOP -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Core Mechanism</div>
+      <h2>The Self-Improvement Loop</h2>
+      <p class="section-intro">
+        This is what separates Hermes from most agents. Every interaction is an opportunity to learn, not just to respond.
+      </p>
+
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 1070 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Task runs, background review checks four triggers, if any one fires skill_manage writes or revises SKILL.md and USER.md updates, otherwise nothing changes">
+          <defs>
+            <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--text3)"></path>
+            </marker>
+          </defs>
+          <g font-family="var(--mono)" font-size="12">
+            <rect x="10" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="125" y="38" text-anchor="middle" fill="var(--text)" font-weight="600">You Give a Task</text>
+            <line x1="25" y1="50" x2="225" y2="50" stroke="var(--border)" stroke-width="1"></line>
+            <text x="125" y="121" text-anchor="middle" fill="var(--text3)" font-size="10.5">Hermes executes it</text>
+
+            <line x1="240" y1="100" x2="278" y2="100" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
+
+            <rect x="280" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="395" y="38" text-anchor="middle" fill="var(--text)" font-weight="600">Background Review Runs</text>
+            <line x1="295" y1="50" x2="495" y2="50" stroke="var(--border)" stroke-width="1"></line>
+            <text x="395" y="68" text-anchor="middle" fill="var(--text3)" font-size="10">Fires if ANY one is true:</text>
+            <text x="300" y="86" fill="var(--text2)" font-size="10">•  5+ tool calls succeeded</text>
+            <text x="300" y="102" fill="var(--text2)" font-size="10">•  it worked through an error</text>
+            <text x="300" y="118" fill="var(--text2)" font-size="10">•  you corrected it</text>
+            <text x="300" y="134" fill="var(--text2)" font-size="10">•  it was a non-trivial workflow</text>
+            <line x1="300" y1="148" x2="490" y2="148" stroke="var(--border)" stroke-width="1"></line>
+            <text x="395" y="167" text-anchor="middle" fill="var(--text3)" font-size="10">None true → no change made</text>
+
+            <line x1="510" y1="100" x2="548" y2="100" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
+
+            <rect x="550" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="665" y="38" text-anchor="middle" fill="var(--accent)" font-weight="600">skill_manage</text>
+            <line x1="565" y1="50" x2="765" y2="50" stroke="var(--border)" stroke-width="1"></line>
+            <text x="665" y="104" text-anchor="middle" fill="var(--text3)" font-size="10">Writes or revises</text>
+            <text x="665" y="122" text-anchor="middle" fill="var(--text3)" font-size="10">SKILL.md, or /learn</text>
+            <text x="665" y="140" text-anchor="middle" fill="var(--text3)" font-size="10">triggers it directly</text>
+
+            <line x1="780" y1="100" x2="818" y2="100" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arch-arrow)"></line>
+
+            <rect x="820" y="15" width="230" height="170" rx="6" fill="var(--bg2)" stroke="var(--border)"></rect>
+            <text x="935" y="38" text-anchor="middle" fill="var(--text)" font-weight="600" font-size="11">USER.md</text>
+            <line x1="835" y1="50" x2="1035" y2="50" stroke="var(--border)" stroke-width="1"></line>
+            <text x="935" y="121" text-anchor="middle" fill="var(--text3)" font-size="10">Updates too</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="arch-list">
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">A skill is born, via skill_manage</div>
+            <p class="arch-item-desc">Hermes writes a <code>SKILL.md</code> file to <code>~/.hermes/skills/</code> on its own, or you trigger it directly with <code>/learn</code>, pointing it at a codebase, a doc, or a workflow you just walked it through.</p>
+          </div>
+        </div>
+        <div class="arch-item fade-up">
+          <div class="arch-item-bullet"></div>
+          <div class="arch-item-body">
+            <div class="arch-item-title">The skill improves</div>
+            <p class="arch-item-desc">The same review can revise an existing skill instead of creating a new one. Not fine-tuning, just a markdown file being edited. <code>skills.write_approval</code> stages every write for your review first, if you want tighter control.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:1.5rem;">
+        <span class="info-box-icon">★</span>
+        <span>Rule of thumb: if you'd put it on a sticky note, it's memory. If you'd put it in a reference document, it's a skill.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY ARCHITECTURE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Memory System</div>
+      <h2>Memory Architecture</h2>
+      <p class="section-intro">
+        Hermes maintains persistent memory across three plain-text files plus a searchable conversation history. These are not logs, they are active inputs to every conversation.
+      </p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>File / Store</th>
+            <th>Holds</th>
+            <th>Written by</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SOUL.md</td>
+            <td>Durable identity and tone, like a system prompt you edit directly, global to the instance</td>
+            <td>You, directly</td>
+          </tr>
+          <tr>
+            <td>MEMORY.md</td>
+            <td>Small durable facts, things you've told it, conclusions from past tasks</td>
+            <td>Hermes and you</td>
+          </tr>
+          <tr>
+            <td>USER.md</td>
+            <td>Your preferences, communication patterns, what you care about</td>
+            <td>Hermes, automatically</td>
+          </tr>
+          <tr>
+            <td>Conversation history</td>
+            <td>Past conversations, indexed separately, searchable via <code>session_search</code></td>
+            <td>Hermes, automatically</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-top:1rem;">
+        The conversation-history split matters in practice: <code>hermes memory reset</code> only clears MEMORY.md and USER.md, not history. Use <code>--target conversations</code> or <code>--target everything</code> for a genuinely clean slate.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Security Model</div>
+      <h2>Security</h2>
+      <p class="section-intro">
+        Hermes asks for your approval before any shell command or file operation, by default, not as an option. You see exactly what it's about to do before it happens.
+      </p>
+      <div class="info-box">
+        <span class="info-box-icon">✓</span>
+        <span>Even a malicious MCP tool trying to run a destructive command hits this prompt first. Command approval makes certain attacks structurally harder.</span>
+      </div>
+      <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-top:1.25rem;">
+        The trade-off is friction. For scheduled tasks, mark specific commands as trusted to skip the prompt, anything new or risky still stops and asks. More in Module 07.
+      </p>
+
+      <details class="detail-aside">
+        <summary>Case: OpenClaw's 2026 security incident</summary>
+        <div class="detail-aside-content">
+          OpenClaw went viral in early 2026, and security researchers found real problems fast. Authentication was disabled by default, exposing tens of thousands of instances, and one vulnerability let a malicious website silently take over a running agent from a single clicked link. The team has since patched filesystem boundaries, network egress controls, and plugin trust verification.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- TRADE-OFFS TABLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Comparison</div>
+      <h2>Hermes vs OpenClaw: The Trade-offs</h2>
+      <p class="section-intro">
+        No tool is universally better.
+      </p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>What you'd ask</th>
+            <th>Hermes</th>
+            <th>OpenClaw</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Does it get smarter the more I use it?</td>
+            <td>Yes, it writes itself new cheat sheets as it goes, automatically</td>
+            <td>Remembers things about you, but doesn't rewrite its own procedures the same way</td>
+          </tr>
+          <tr>
+            <td>Can I just install ready-made add-ons?</td>
+            <td>Smaller library, mostly ones it builds for your own use</td>
+            <td>A big public library (ClawHub) other people have already built and shared</td>
+          </tr>
+          <tr>
+            <td>Will it ask before doing something risky?</td>
+            <td>Yes, always, before any file change, message, or command</td>
+            <td>Had a serious security scare in 2026, since fixed. See Security above.</td>
+          </tr>
+          <tr class="row-highlight">
+            <td><strong>Best for</strong></td>
+            <td><strong>A personal assistant that actually improves the more you use it</strong></td>
+            <td><strong>Wide messaging-app coverage and a big ready-made add-on library</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-top:1rem;">
+        As of today, Hermes is the more polished of the two, and the one we'd point you to if you're only running one. Nothing wrong with running both side by side either, migrating back and forth is a solved problem either way.
+      </p>
+    </div>
+  </section>
+
+  <!-- PAGE NAV -->
+  <div class="container">
+    <nav class="page-nav">
+      <a href="module-1.html" class="page-nav-link">
+        <span class="page-nav-label">← Previous</span>
+        <span class="page-nav-title">Module 01: What is Hermes?</span>
+      </a>
+      <a href="module-3.html" class="page-nav-link page-nav-link--next">
+        <span class="page-nav-label">Next →</span>
+        <span class="page-nav-title">Module 03: Setup &amp; Installation</span>
+      </a>
+    </nav>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">Building a Financial AI Agent with Hermes x Sectors, Course Materials</p>
+    <span class="footer-notice">
+      <span class="footer-dot"></span>
+      Temporary resource, available for a limited time
+    </span>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('hermes-theme', next);
+    syncThemeIcon(next);
+  }
+
+  function syncThemeIcon(theme){
+    const sun = document.getElementById('theme-icon-sun');
+    const moon = document.getElementById('theme-icon-moon');
+    if(sun) sun.style.display = theme === 'dark' ? 'block' : 'none';
+    if(moon) moon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+  });
+</script>
+</body>
+</html>
