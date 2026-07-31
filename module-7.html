@@ -115,7 +115,7 @@
       <div class="section-label">Two Mechanisms</div>
       <h2>delegate_task vs the Kanban Board</h2>
       <p class="section-intro">
-        Hermes gives you two different ways to hand work to another agent. They solve different problems.
+        There are two ways to do multi-agent work in Hermes. One is deliberately telling it to delegate, in a normal chat, using <code>delegate_task</code>. The other is routing work through the Kanban board, where it lands in Triage and gets picked up by profiles you've already set up.
       </p>
 
       <table class="simple-table">
@@ -134,7 +134,7 @@
           </tr>
           <tr>
             <td>Blocking</td>
-            <td>Parent blocks until the subagent returns</td>
+            <td>Runs in the background, Hermes returns a handle and keeps going</td>
             <td>Fire-and-forget</td>
           </tr>
           <tr>
@@ -158,6 +158,11 @@
       <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;">
         The Kanban board is a durable task board, backed by a single SQLite database and shared across all profiles on a machine. Every task is a row, every handoff is a comment anyone can read.
       </p>
+
+      <div class="info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">i</span>
+        <span><code>delegate_task</code> children are copies of whoever called them, not your named profiles. They inherit the calling profile's toolsets and model, get a completely blank conversation, and disappear once they report back. Batching several at once gets you parallelism, but the bigger reason to reach for it even one at a time is context isolation, the subagent does the messy work in its own isolated context and only a summary re-enters yours. For actual specialized agents, purpose-built SOUL.md, own toolset scope, addressable by name, that's what the Kanban board's profiles are for.</span>
+      </div>
     </div>
   </section>
 
