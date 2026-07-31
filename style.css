@@ -27,6 +27,7 @@
   --pink: #d99a74;
   --amber: #e0c07c;
   --blue: #92bcbf;
+  --blue-dim: rgba(146,188,191,0.14);
   --nav-bg: rgba(26,23,18,0.92);
 
   --mono: 'DM Mono', monospace;
@@ -50,6 +51,7 @@
   --pink: #b06a4a;
   --amber: #b08f3e;
   --blue: #4f7a80;
+  --blue-dim: rgba(79,122,128,0.12);
   --nav-bg: rgba(253,243,231,0.94);
 }
 
@@ -529,7 +531,7 @@ strong { font-weight: 500; color: var(--text); }
 
 .page-header-eyebrow {
   font-family: var(--pixel);
-  font-size: 9px;
+  font-size: 12px;
   color: var(--accent);
   letter-spacing: 0.15em;
   margin-bottom: 1rem;
@@ -572,9 +574,9 @@ strong { font-weight: 500; color: var(--text); }
 
 .section-label {
   font-family: var(--pixel);
-  font-size: 8px;
+  font-size: 11px;
   color: var(--accent);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
   display: flex;
@@ -885,8 +887,8 @@ strong { font-weight: 500; color: var(--text); }
    ============================================================ */
 
 .info-box {
-  background: var(--accent-dim);
-  border: 1px solid var(--accent);
+  background: var(--blue-dim);
+  border: 1px solid var(--blue);
   border-radius: 6px;
   padding: 1rem 1.25rem;
   font-size: 0.85rem;
@@ -899,9 +901,18 @@ strong { font-weight: 500; color: var(--text); }
 }
 
 .info-box-icon {
-  color: var(--accent);
   flex-shrink: 0;
-  font-size: 0.8rem;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--bg);
+  background: var(--blue);
+  border-radius: 5px;
   margin-top: 0.05rem;
 }
 
@@ -1174,6 +1185,30 @@ code, .inline-code {
   color: var(--text2);
   line-height: 1.6;
   margin-bottom: 0.5rem;
+}
+
+.install-step-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.install-step-list li {
+  position: relative;
+  padding-left: 1.3rem;
+  font-size: 0.84rem;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+.install-step-list li::before {
+  content: '→';
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 /* ============================================================

@@ -158,10 +158,30 @@
       <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;">
         The Kanban board is a durable task board, backed by a single SQLite database and shared across all profiles on a machine. Every task is a row, every handoff is a comment anyone can read.
       </p>
+    </div>
+  </section>
 
-      <div class="info-box" style="margin-top:1.25rem;">
+  <!-- DELEGATE_TASK IN DEPTH -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">The Lightweight Path</div>
+      <h2>Using delegate_task</h2>
+      <p class="section-intro">
+        No Kanban setup required, this works in any chat, with any profile.
+      </p>
+
+      <div class="info-box">
         <span class="info-box-icon">i</span>
         <span><code>delegate_task</code> children are copies of whoever called them, not your named profiles. They inherit the calling profile's toolsets and model, get a completely blank conversation, and disappear once they report back. Batching several at once gets you parallelism, but the bigger reason to reach for it even one at a time is context isolation, the subagent does the messy work in its own isolated context and only a summary re-enters yours. For actual specialized agents, purpose-built SOUL.md, own toolset scope, addressable by name, that's what the Kanban board's profiles are for.</span>
+      </div>
+
+      <h3 style="margin-top:1.75rem;margin-bottom:0.75rem;">Try it live</h3>
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-bottom:0.75rem;">
+        Paste into any chat. Phrasing it this explicitly, "delegate each as its own subtask" and "run concurrently", pushes Hermes toward a batched <code>delegate_task</code> call instead of just researching all three itself in one pass. If you're on the TUI, type <code>/agents</code> once it kicks off to watch the subagents run live.
+      </p>
+      <div class="code-block code-block--prompt"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+        <div class="code-block-label">Prompt</div>
+        <pre>Research the current state of three programming language ecosystems in parallel: Rust, Zig, and Go. For each one, cover adoption trends, notable production users, and what's changed most in the last year. Delegate each language as its own subtask so they run concurrently, then synthesize the three into one comparison summary.</pre>
       </div>
     </div>
   </section>
