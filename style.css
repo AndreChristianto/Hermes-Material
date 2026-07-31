@@ -1026,6 +1026,7 @@ strong { font-weight: 500; color: var(--text); }
    ============================================================ */
 
 .code-block {
+  position: relative;
   background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -1050,6 +1051,38 @@ strong { font-weight: 500; color: var(--text); }
   color: var(--text3);
   letter-spacing: 0.1em;
   margin-bottom: 0.6rem;
+  padding-right: 2rem;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  color: var(--text3);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.code-copy-btn:hover {
+  color: var(--text);
+  border-color: var(--text3);
+}
+
+.code-copy-btn.copied {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.code-block--prompt .code-copy-btn {
+  background: var(--bg);
 }
 
 .code-block--prompt {

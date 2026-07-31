@@ -110,7 +110,7 @@
         After a few sessions, Hermes will have auto-generated skills, not all of them good. Regular curation keeps the library clean and the agent fast.
       </p>
 
-      <div class="code-block">
+      <div class="code-block"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">List and search skills, from within a chat</div>
         <pre>/skills
 /skills search &lt;term&gt;</pre>
@@ -120,7 +120,7 @@
         Browse published skills in the Hermes Hub. With <code>skills.write_approval</code> on, review pending writes:
       </p>
 
-      <div class="code-block">
+      <div class="code-block"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">Review staged skill writes</div>
         <pre>/skills pending
 /skills diff &lt;id&gt;
@@ -324,6 +324,21 @@
   function scrollNav(dir){
     const el = document.getElementById('navLinks');
     if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
+  function copyCodeBlock(btn){
+    const block = btn.closest('.code-block');
+    const pre = block ? block.querySelector('pre') : null;
+    if(!pre) return;
+    navigator.clipboard.writeText(pre.textContent).then(function(){
+      const original = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      setTimeout(function(){
+        btn.classList.remove('copied');
+        btn.innerHTML = original;
+      }, 1500);
+    });
   }
 
   window.addEventListener('DOMContentLoaded', function(){

@@ -299,6 +299,21 @@
     if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
   }
 
+  function copyCodeBlock(btn){
+    const block = btn.closest('.code-block');
+    const pre = block ? block.querySelector('pre') : null;
+    if(!pre) return;
+    navigator.clipboard.writeText(pre.textContent).then(function(){
+      const original = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      setTimeout(function(){
+        btn.classList.remove('copied');
+        btn.innerHTML = original;
+      }, 1500);
+    });
+  }
+
   window.addEventListener('DOMContentLoaded', function(){
     syncThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
     checkNavScroll();

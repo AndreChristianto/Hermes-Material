@@ -269,22 +269,22 @@
         <tbody>
           <tr>
             <td>agent-literal</td>
-            <td>gpt-5.4-mini</td>
+            <td><code>gpt-5.4-mini</code> or <code>deepseek-v4-flash</code></td>
             <td>Verified facts and documented detail only, no speculation.</td>
           </tr>
           <tr>
             <td>agent-creative</td>
-            <td>gpt-5.4-mini</td>
+            <td><code>gpt-5.4-mini</code> or <code>deepseek-v4-flash</code></td>
             <td>Differing expert opinions and open debates, actively seeks disagreement.</td>
           </tr>
           <tr>
             <td>agent-summarizer</td>
-            <td>gpt-5.4</td>
+            <td><code>gpt-5.4</code> or <code>deepseek-v4-flash</code></td>
             <td>Reconciles overlaps, flags contradictions instead of picking a side.</td>
           </tr>
           <tr>
             <td>agent-orchestrator</td>
-            <td>gpt-5.4-nano</td>
+            <td><code>gpt-5.4-nano</code> or <code>deepseek-v4-flash</code></td>
             <td>Judges whether the combined output actually answers the goal. Nano tier, this is a simple judgment call, not deep reasoning.</td>
           </tr>
         </tbody>
@@ -295,7 +295,7 @@
         Scope each profile down to one job, per Module 09's tuning advice. These are short on purpose.
       </p>
 
-      <div class="code-block code-block--prompt">
+      <div class="code-block code-block--prompt"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">agent-literal/SOUL.md</div>
         <pre>You are agent-literal, a factual research worker.
 
@@ -306,7 +306,7 @@ If something is disputed or unconfirmed, say so plainly rather than picking a si
 Keep output dense and citation-friendly. No filler.</pre>
       </div>
 
-      <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+      <div class="code-block code-block--prompt" style="margin-top:0.75rem;"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">agent-creative/SOUL.md</div>
         <pre>You are agent-creative, a perspective research worker.
 
@@ -317,7 +317,7 @@ Speculative angles are welcome here, label them clearly as speculation.
 Keep output dense and citation-friendly. No filler.</pre>
       </div>
 
-      <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+      <div class="code-block code-block--prompt" style="margin-top:0.75rem;"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">agent-summarizer/SOUL.md</div>
         <pre>You are agent-summarizer. You receive output from agent-literal and agent-creative and reconcile it into one brief.
 
@@ -326,7 +326,7 @@ Merge overlapping points. Flag direct contradictions explicitly rather than sile
 Produce a single neutral-toned summary of what's known versus what's debated. Do not add new claims of your own.</pre>
       </div>
 
-      <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+      <div class="code-block code-block--prompt" style="margin-top:0.75rem;"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">agent-orchestrator/SOUL.md</div>
         <pre>You are agent-orchestrator. You own the root task and judge whether the combined output actually answers the original goal.
 
@@ -348,11 +348,33 @@ If the answer is incomplete, send it back with a specific note on what's missing
 
       <h3 style="margin-top:1.75rem;margin-bottom:0.75rem;">A prompt that reliably forces the split</h3>
       <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-bottom:0.75rem;">
-        Paste into the Triage task's Title field, there's no separate body box:
+        Paste into the Triage task's Title field, there's no separate body box. The template below shows the structure, swap <code>&lt;TOPIC&gt;</code> for whatever you're researching:
       </p>
-      <div class="code-block code-block--prompt">
+      <div class="code-block code-block--prompt"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+        <div class="code-block-label">Template</div>
+        <pre>Research &lt;TOPIC&gt; using two independent tracks, then synthesize.
+
+1. Factual track:
+   - Verified facts, documented technical details, definitions
+   - Confirmed capabilities only, no speculation
+   - If something is disputed or unconfirmed, say so plainly
+
+2. Perspective track:
+   - Differing expert opinions, open debates, controversies
+   - Speculative angles, actively seek disagreement
+
+Once both tracks are complete, synthesize into one cohesive brief:
+   - Reconcile overlaps
+   - Flag direct contradictions explicitly
+   - Produce a single neutral-toned summary of what's known versus what's debated</pre>
+      </div>
+
+      <p style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-bottom:0.75rem;margin-top:1.25rem;">
+        For class, everyone can copy-paste this one as-is, topic is Claude, the AI assistant:
+      </p>
+      <div class="code-block code-block--prompt"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">Prompt</div>
-        <pre>Research a topic using two independent tracks, then synthesize.
+        <pre>Research Claude, the AI assistant, using two independent tracks, then synthesize.
 
 1. Factual track:
    - Verified facts, documented technical details, definitions
@@ -378,7 +400,7 @@ Once both tracks are complete, synthesize into one cohesive brief:
       <h2>Finding Task Output</h2>
       <p class="section-intro">From the dashboard or the CLI, take your pick.</p>
 
-      <div class="code-block">
+      <div class="code-block"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">CLI</div>
         <pre>hermes kanban show &lt;task_id&gt;    # status, assignee, diagnostics, latest_summary
 hermes kanban tail &lt;task_id&gt;    # live progress stream
@@ -456,6 +478,21 @@ hermes kanban log &lt;task_id&gt;     # raw worker log, full error traces</pre>
   function scrollNav(dir){
     const el = document.getElementById('navLinks');
     if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
+  function copyCodeBlock(btn){
+    const block = btn.closest('.code-block');
+    const pre = block ? block.querySelector('pre') : null;
+    if(!pre) return;
+    navigator.clipboard.writeText(pre.textContent).then(function(){
+      const original = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      setTimeout(function(){
+        btn.classList.remove('copied');
+        btn.innerHTML = original;
+      }, 1500);
+    });
   }
 
   window.addEventListener('DOMContentLoaded', function(){

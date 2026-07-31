@@ -132,7 +132,7 @@
       <p class="section-intro">
         A standalone script on a VPS, triggered by plain OS-level cron, works well for deterministic jobs, fetch data, summarize cheaply, write a file, no reasoning needed. A daily AI news digest is a good example: a script pulls top Hacker News stories, summarizes them with a free-tier API, and writes the result straight to a file, all outside Hermes entirely.
       </p>
-      <div class="code-block">
+      <div class="code-block"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">Cron entry</div>
         <pre>0 7 * * * GEMINI_API_KEY=your-key VAULT_DIR=/root/vault python3 /root/scripts/news_digest.py >> /root/news_digest.log 2>&1</pre>
       </div>
@@ -157,7 +157,7 @@
           <div class="competency-text">
             <strong>Morning Briefing (Weekdays, 7 AM)</strong>
             Pull yesterday's top 3 IDX movers. For each, include the percentage change and a one-line note from Sectors news. Deliver to Telegram before you start your day.
-            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+            <div class="code-block code-block--prompt" style="margin-top:0.75rem;"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
               <div class="code-block-label">Prompt</div>
               <pre>Pull the top 3 IDX stock movers from yesterday. For each, show the ticker, percentage change, and a one-line summary of any Sectors news. Send to Telegram.</pre>
             </div>
@@ -169,7 +169,7 @@
           <div class="competency-text">
             <strong>Weekly Portfolio Snapshot (Fridays, 4 PM)</strong>
             Compare your watchlist stocks against their 30-day performance. Summarize in a table and send to Telegram ahead of the weekend.
-            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+            <div class="code-block code-block--prompt" style="margin-top:0.75rem;"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
               <div class="code-block-label">Prompt</div>
               <pre>Compare BBCA, BMRI, and TLKM's current price against 30 days ago. Show the change as a percentage. Format as a table and send to Telegram.</pre>
             </div>
@@ -181,7 +181,7 @@
           <div class="competency-text">
             <strong>Price Threshold Alert (Hourly)</strong>
             Hermes checks BBCA's price every hour. If it drops below a threshold you define, send an immediate Telegram message.
-            <div class="code-block code-block--prompt" style="margin-top:0.75rem;">
+            <div class="code-block code-block--prompt" style="margin-top:0.75rem;"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
               <div class="code-block-label">Prompt</div>
               <pre>Check BBCA's current price. If it is below 9500 IDR, send a Telegram message: "Alert: BBCA has dropped below 9500. Current price: [price]."</pre>
             </div>
@@ -199,7 +199,7 @@
       <p style="font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem;">
         Local means the gateway runs only while your machine is on, close your laptop and the morning briefing doesn't run. A VPS fixes that. Setup mirrors local (SOUL.md, Sectors MCP, messaging), but Hermes runs as a Docker container with a restart policy so it survives reboots:
       </p>
-      <div class="code-block">
+      <div class="code-block"><button class="code-copy-btn" onclick="copyCodeBlock(this)" aria-label="Copy to clipboard"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
         <div class="code-block-label">Persistent gateway on a VPS</div>
         <pre>docker run -d --name hermes --restart unless-stopped -v ~/.hermes:/opt/data -p 8642:8642 nousresearch/hermes-agent gateway run</pre>
       </div>
@@ -286,6 +286,21 @@
   function scrollNav(dir){
     const el = document.getElementById('navLinks');
     if(el) el.scrollBy({ left: dir * 140, behavior: 'smooth' });
+  }
+
+  function copyCodeBlock(btn){
+    const block = btn.closest('.code-block');
+    const pre = block ? block.querySelector('pre') : null;
+    if(!pre) return;
+    navigator.clipboard.writeText(pre.textContent).then(function(){
+      const original = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      setTimeout(function(){
+        btn.classList.remove('copied');
+        btn.innerHTML = original;
+      }, 1500);
+    });
   }
 
   window.addEventListener('DOMContentLoaded', function(){
