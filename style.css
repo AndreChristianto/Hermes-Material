@@ -1211,6 +1211,29 @@ code, .inline-code {
   top: 0;
 }
 
+.install-step-list--warn li::before {
+  color: var(--amber);
+}
+
+.pro-con-box {
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+}
+
+.pro-con-box .install-step-title {
+  margin-bottom: 0.6rem;
+}
+
+.pro-con-box--good {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+}
+
+.pro-con-box--bad {
+  background: rgba(232,184,74,0.08);
+  border: 1px solid var(--amber);
+}
+
 /* ============================================================
    Activity Card
    ============================================================ */
